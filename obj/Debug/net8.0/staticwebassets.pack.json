@@ -3389,8 +3389,36 @@
       "PackagePath": "staticwebassets/admin/images/img-avatar/background.jpg"
     },
     {
-      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/Anh-test.png",
-      "PackagePath": "staticwebassets/admin/images/img-exam/Anh-test.png"
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/1737389385_9mangwanvainternetcancoketnoiinternet.jpg",
+      "PackagePath": "staticwebassets/admin/images/img-exam/1737389385_9mangwanvainternetcancoketnoiinternet.jpg"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/ai.jpeg",
+      "PackagePath": "staticwebassets/admin/images/img-exam/ai.jpeg"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/cach-kiem-tra-toc-do-mang-tren-may-tinh-dien-thoa-3-800x400.png",
+      "PackagePath": "staticwebassets/admin/images/img-exam/cach-kiem-tra-toc-do-mang-tren-may-tinh-dien-thoa-3-800x400.png"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/cong-cu-kiem-tra-van-ban-ai-4.jpg",
+      "PackagePath": "staticwebassets/admin/images/img-exam/cong-cu-kiem-tra-van-ban-ai-4.jpg"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/lap-trinh-c-co-ban-vippro.jpg",
+      "PackagePath": "staticwebassets/admin/images/img-exam/lap-trinh-c-co-ban-vippro.jpg"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/maxresdefault.jpg",
+      "PackagePath": "staticwebassets/admin/images/img-exam/maxresdefault.jpg"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/thuc-hanh-voi-sql_563ab47a356c46e89762c2772b1c1edc.png",
+      "PackagePath": "staticwebassets/admin/images/img-exam/thuc-hanh-voi-sql_563ab47a356c46e89762c2772b1c1edc.png"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/thumb_1200_848.png",
+      "PackagePath": "staticwebassets/admin/images/img-exam/thumb_1200_848.png"
     },
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-subject/Anh-nen.jpg",

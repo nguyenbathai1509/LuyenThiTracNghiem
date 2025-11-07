@@ -1,0 +1,39 @@
+@model IEnumerable<dynamic>
+
+<div class="trending-top mb-30">
+    <div class="trend-top-img">
+        @foreach (var exam in Model.Take(1)){
+        <img src="@(Model.FirstOrDefault()?.Image ?? "/images/default.png")" alt="Đề thi nổi bật">
+                <div class="trend-top-cap">
+                    <span>Đề thi nổi bật</span>
+                    <h2>
+                        <a href="/Exam/Details/@Model.FirstOrDefault()?.ExamId">
+                            @(Model.FirstOrDefault()?.ExamName ?? "Chưa có dữ liệu")
+                        </a>
+                    </h2>
+                </div>
+        }
+        
+    </div>
+</div>
+
+<div class="trending-bottom">
+    <div class="row">
+        @foreach (var exam in Model.Skip(1))
+        {
+            <div class="col-lg-4">
+                <div class="single-bottom mb-35 exam-card">
+                    <div class="trend-bottom-img mb-30">
+                        <img src="@exam.Image" alt="@exam.ExamName">
+                    </div>
+                    <div class="trend-bottom-cap">
+                        <span class="color1">@exam.SubjectId</span>
+                        <h4>
+                            <a href="/Exam/Details/@exam.ExamId">@exam.ExamName</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

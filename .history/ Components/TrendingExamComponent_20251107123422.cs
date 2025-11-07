@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LuyenThiTracNghiem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LuyenThiTracNghiem. Components
+{
+    [ViewComponent(Name = "TrendingExam")]
+    public class TrendingExamComponent : ViewComponent
+    {
+        private readonly DataContext _context;
+
+        public TrendingExamComponent(DataContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var listTrendingExam = (from exam in _context.Exams
+                                        join attempt in _context.tblExamAttempt on exam.ExamId equals attempt.ExamId
+                                        where exam.Status == true && attempt.IsCompleted == true
+                                        group attempt by new { exam.ExamId, exam.ExamName, exam.Image, exam.SubjectId } into g
+                                        orderby g.Count() descending
+                                        select new
+                                        {
+                                            g.Key.ExamId,
+                                            g.Key.ExamName,
+                                            g.Key.Image,
+                                            g.Key.SubjectId,
+                                            AttemptCount = g.Count()
+                                        })
+                                        .Take(top)
+                                        .ToList();
+
+            return await Task.FromResult((IViewComponentResult)View("Default", listTopStudents));
+        }
+    }
+}

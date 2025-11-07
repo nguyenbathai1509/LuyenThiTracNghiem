@@ -1,0 +1,38 @@
+@model IEnumerable<dynamic>
+
+<section class="whats-news-area pt-50 pb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Header + Tabs -->
+                <div class="d-flex justify-content-between align-items-center mb-30">
+                    <h3>Mới nhất</h3>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- Tab All -->
+                    <div class="tab-pane fade show active" id="all" role="tabpanel">
+                        <div class="row">
+                            @foreach (var exam in Model)
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="@exam.Image"
+                                             alt="@exam.ExamName"
+                                             class="card-img"
+                                             loading="lazy"
+                                        <div class="card-body">
+                                            <span class="color1">@exam.SubjectName</span>
+                                            <h5><a href="@Url.Action("Details", "Exam", new { id = (int)exam.ExamId })">@exam.ExamName</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                <!-- End Tab Content -->
+            </div>
+        </div>
+    </div>
+</section>

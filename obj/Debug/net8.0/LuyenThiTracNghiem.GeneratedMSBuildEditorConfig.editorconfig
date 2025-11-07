@@ -170,8 +170,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVnaXN0ZXIvUmVnaXN0ZXJTdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/NewExam/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvTmV3RXhhbS9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/TopStudents/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvVG9wU3R1ZGVudHMvRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/TrendingExam/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvVHJlbmRpbmdFeGFtL0RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/TrendingExamWeekly/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvVHJlbmRpbmdFeGFtV2Vla2x5L0RlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Error.cshtml]

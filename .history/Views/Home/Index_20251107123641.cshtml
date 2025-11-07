@@ -1,0 +1,358 @@
+﻿<main>
+    <!-- Trending Area Start -->
+    <div class="trending-area fix">
+        <div class="container">
+            <div class="trending-main">
+                <!-- Trending Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="trending-tittle">
+                            <strong>Trending now</strong>
+                            <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
+                            <div class="trending-animated">
+                                <ul id="js-news" class="js-hidden">
+                                    <li class="news-item">🎉 Chào mừng bạn đến với hệ thống ôn tập và thi trực tuyến!</li>
+                                    <li class="news-item">📢 Đề thi thử môn Toán đã được cập nhật, hãy vào luyện tập ngay.</li>
+                                    <li class="news-item">💡 Mẹo học tập: Ôn luyện 30 phút mỗi ngày hiệu quả hơn học dồn nhiều giờ.</li>
+                                    <li class="news-item">⏰ Hãy kiểm tra lịch thi thử mới nhất trong mục "Đề thi".</li>
+                                    <li class="news-item">🏆 Top 5 học viên có điểm cao nhất tuần này đã được công bố!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        
+
+                    </div>
+                    <!-- Right content: Top học viên xuất sắc -->
+                    @await Component.InvokeAsync("TopStudents")
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Trending Area End -->
+    <!--   Weekly-Exams start -->
+    <div class="weekly-news-area pt-50">
+        <div class="container">
+            <div class="weekly-wrapper">
+                <!-- Section Title -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle mb-30">
+                            <h3>Đề thi nổi bật trong tuần</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="weekly-news-active dot-style d-flex">
+                            <!-- Single Exam -->
+                            <div class="weekly-single exam-card">
+                                <div class="weekly-img">
+                                    <img src="https://bambooschool.edu.vn/wp-content/uploads/2022/07/cach-hoc-gioi-toan-9.jpg" alt="Toán học">
+                                </div>
+                                <div class="weekly-caption">
+                                    <span class="color1">Toán</span>
+                                    <h4><a href="exam-details.html">Ôn tập chương 1: Hàm số và đồ thị</a></h4>
+                                </div>
+                            </div>
+                            <!-- Single Exam -->
+                            <div class="weekly-single exam-card">
+                                <div class="weekly-img">
+                                    <img src="https://bambooschool.edu.vn/wp-content/uploads/2022/07/cach-hoc-gioi-toan-9.jpg" alt="Vật lý">
+                                </div>
+                                <div class="weekly-caption">
+                                    <span class="color2">Vật lý</span>
+                                    <h4><a href="exam-details.html">Bài tập cơ học lớp 10</a></h4>
+                                </div>
+                            </div>
+                            <!-- Single Exam -->
+                            <div class="weekly-single exam-card">
+                                <div class="weekly-img">
+                                    <img src="https://bambooschool.edu.vn/wp-content/uploads/2022/07/cach-hoc-gioi-toan-9.jpg" alt="Tiếng Anh">
+                                </div>
+                                <div class="weekly-caption">
+                                    <span class="color3">Tiếng Anh</span>
+                                    <h4><a href="exam-details.html">Ôn từ vựng Unit 6-8</a></h4>
+                                </div>
+                            </div>
+                            <!-- Single Exam -->
+                            <div class="weekly-single exam-card">
+                                <div class="weekly-img">
+                                    <img src="https://bambooschool.edu.vn/wp-content/uploads/2022/07/cach-hoc-gioi-toan-9.jpg" alt="Hóa học">
+                                </div>
+                                <div class="weekly-caption">
+                                    <span class="color4">Hóa học</span>
+                                    <h4><a href="exam-details.html">Bài tập hóa hữu cơ</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Weekly-Exams -->
+
+    <!-- What's New Start -->
+    <section class="whats-news-area pt-50 pb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Header + Tabs -->
+                    <div class="d-flex justify-content-between align-items-center mb-30">
+                        <h3>Mới nhất</h3>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="tab-all" data-toggle="tab" href="#all" role="tab">Tất cả</a>
+                            <a class="nav-item nav-link" id="tab-toan" data-toggle="tab" href="#toan" role="tab">Toán</a>
+                            <a class="nav-item nav-link" id="tab-vatly" data-toggle="tab" href="#vatly" role="tab">Vật lý</a>
+                            <a class="nav-item nav-link" id="tab-tienganh" data-toggle="tab" href="#tienganh" role="tab">Tiếng Anh</a>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="nav-tabContent">
+                        <!-- Tab All -->
+                        <div class="tab-pane fade show active" id="all" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="https://monkeymedia.vcdn.com.vn/upload/web/storage_web/09-06-2022_18:15:17_toan-lop-5-hinh-hoc.jpg" alt="Toán" class="card-img">
+                                        <div class="card-body">
+                                            <span class="color1">Toán</span>
+                                            <h5><a href="exam-details.html">Ôn tập chương 1: Hàm số và đồ thị</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="https://monkeymedia.vcdn.com.vn/upload/web/storage_web/09-06-2022_18:15:17_toan-lop-5-hinh-hoc.jpg" alt="Vật lý" class="card-img">
+                                        <div class="card-body">
+                                            <span class="color2">Vật lý</span>
+                                            <h5><a href="exam-details.html">Bài tập cơ học lớp 10</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="https://monkeymedia.vcdn.com.vn/upload/web/storage_web/09-06-2022_18:15:17_toan-lop-5-hinh-hoc.jpg" alt="Tiếng Anh" class="card-img">
+                                        <div class="card-body">
+                                            <span class="color3">Tiếng Anh</span>
+                                            <h5><a href="exam-details.html">Ôn từ vựng Unit 6-8</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tab Toán -->
+                        <div class="tab-pane fade" id="toan" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="https://monkeymedia.vcdn.com.vn/upload/web/storage_web/09-06-2022_18:15:17_toan-lop-5-hinh-hoc.jpg" alt="Toán" class="card-img">
+                                        <div class="card-body">
+                                            <span class="color1">Toán</span>
+                                            <h5><a href="exam-details.html">Ôn tập chương 2: Phương trình</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tab Vật lý -->
+                        <div class="tab-pane fade" id="vatly" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="https://monkeymedia.vcdn.com.vn/upload/web/storage_web/09-06-2022_18:15:17_toan-lop-5-hinh-hoc.jpg" alt="Vật lý" class="card-img">
+                                        <div class="card-body">
+                                            <span class="color2">Vật lý</span>
+                                            <h5><a href="exam-details.html">Bài tập điện học lớp 10</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tab Tiếng Anh -->
+                        <div class="tab-pane fade" id="tienganh" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="https://monkeymedia.vcdn.com.vn/upload/web/storage_web/09-06-2022_18:15:17_toan-lop-5-hinh-hoc.jpg" alt="Tiếng Anh" class="card-img">
+                                        <div class="card-body">
+                                            <span class="color3">Tiếng Anh</span>
+                                            <h5><a href="exam-details.html">Ôn từ vựng Unit 6-8</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Tab Content -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- What's New End -->
+
+    <!-- Latest Documents Start -->
+    <div class="weekly2-news-area weekly2-pading gray-bg">
+        <div class="container">
+            <div class="section-tittle mb-30">
+                <h3>Tài liệu mới nhất</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="weekly2-single shadow-sm rounded p-2 mb-4">
+                        <div class="weekly2-img mb-2">
+                            <img src="https://sarah.edu.vn/wp-content/uploads/2022/05/Cau-Do-Toan-Hoc0-01.jpg" alt="Toán" class="img-fluid rounded">
+                        </div>
+                        <div class="weekly2-caption">
+                            <span class="color1">Toán</span>
+                            <p>Chương 1: Hàm số và đồ thị</p>
+                            <h4><a href="document-details.html">Tổng hợp lý thuyết và bài tập</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="weekly2-single shadow-sm rounded p-2 mb-4">
+                        <div class="weekly2-img mb-2">
+                            <img src="https://sarah.edu.vn/wp-content/uploads/2022/05/Cau-Do-Toan-Hoc0-01.jpg" alt="Vật lý" class="img-fluid rounded">
+                        </div>
+                        <div class="weekly2-caption">
+                            <span class="color2">Vật lý</span>
+                            <p>Chương 2: Cơ học lớp 10</p>
+                            <h4><a href="document-details.html">Bài tập & Lý thuyết quan trọng</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="weekly2-single shadow-sm rounded p-2 mb-4">
+                        <div class="weekly2-img mb-2">
+                            <img src="https://sarah.edu.vn/wp-content/uploads/2022/05/Cau-Do-Toan-Hoc0-01.jpg" alt="Tiếng Anh" class="img-fluid rounded">
+                        </div>
+                        <div class="weekly2-caption">
+                            <span class="color3">Tiếng Anh</span>
+                            <p>Unit 6-8</p>
+                            <h4><a href="document-details.html">Từ vựng & Ngữ pháp trọng tâm</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest Documents End -->
+
+    <!-- Start Youtube Section -->
+    <section class="youtube-area video-padding bg-light">
+        <div class="container">
+            <div class="section-tittle mb-30 text-center">
+                <h3>Video Học Tập Nổi Bật</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <!-- Video lớn -->
+                    <div class="embed-responsive embed-responsive-16by9 shadow rounded">
+                        <iframe id="mainVideo" class="embed-responsive-item" src="https://www.youtube.com/embed/CicQIuG8hBo"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption mt-3">
+                        <span class="badge bg-primary">Toán</span>
+                        <h5 id="mainVideoTitle" class="mt-2">Bài giảng hàm số và đồ thị</h5>
+                        <p>Hướng dẫn chi tiết các dạng bài tập chương 1 lớp 10.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Danh sách video nhỏ -->
+                    <div class="row g-2">
+                        <div class="col-12">
+                            <div class="video-thumb shadow-sm rounded overflow-hidden" onclick="changeVideo('https://www.youtube.com/embed/CicQIuG8hBo', 'Bài giảng hàm số và đồ thị')">
+                                <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allowfullscreen></iframe>
+                                <div class="video-intro p-2 bg-white">
+                                    <h6>Bài giảng hàm số và đồ thị</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="video-thumb shadow-sm rounded overflow-hidden" onclick="changeVideo('https://www.youtube.com/embed/rIz00N40bag', 'Bài tập cơ học')">
+                                <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allowfullscreen></iframe>
+                                <div class="video-intro p-2 bg-white">
+                                    <h6>Bài tập cơ học</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Thêm các video khác -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Youtube Section -->
+
+    <!-- Courses Slider Section -->
+    <section class="courses-slider-area py-50 bg-light">
+        <div class="container">
+            <div class="section-tittle text-center mb-40">
+                <h3>Khóa học mới nhất</h3>
+            </div>
+            <div class="courses-slider">
+                <div class="single-course shadow-sm rounded overflow-hidden">
+                    <div class="course-img">
+                        <img src="https://i.pinimg.com/736x/72/ce/2c/72ce2c38b1b1b7f4548522b5ee1c8778.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="course-content p-3">
+                        <span class="badge bg-primary mb-2">Toán</span>
+                        <h5><a href="#">Khóa học Hàm số và đồ thị lớp 10</a></h5>
+                        <p class="text-muted small">Cập nhật: 25 Sep 2025</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary mt-2">Học ngay</a>
+                    </div>
+                </div>
+                <div class="single-course shadow-sm rounded overflow-hidden">
+                    <div class="course-img">
+                        <img src="https://i.pinimg.com/736x/72/ce/2c/72ce2c38b1b1b7f4548522b5ee1c8778.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="course-content p-3">
+                        <span class="badge bg-success mb-2">Văn</span>
+                        <h5><a href="#">Tóm tắt tác phẩm “Chiếc thuyền ngoài xa”</a></h5>
+                        <p class="text-muted small">Cập nhật: 24 Sep 2025</p>
+                        <a href="#" class="btn btn-sm btn-outline-success mt-2">Học ngay</a>
+                    </div>
+                </div>
+                <div class="single-course shadow-sm rounded overflow-hidden">
+                    <div class="course-img">
+                        <img src="https://i.pinimg.com/736x/72/ce/2c/72ce2c38b1b1b7f4548522b5ee1c8778.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="course-content p-3">
+                        <span class="badge bg-warning mb-2">Lý</span>
+                        <h5><a href="#">Bài tập Điện học – lời giải chi tiết</a></h5>
+                        <p class="text-muted small">Cập nhật: 23 Sep 2025</p>
+                        <a href="#" class="btn btn-sm btn-outline-warning mt-2">Học ngay</a>
+                    </div>
+                </div>
+                <div class="single-course shadow-sm rounded overflow-hidden">
+                    <div class="course-img">
+                        <img src="https://i.pinimg.com/736x/72/ce/2c/72ce2c38b1b1b7f4548522b5ee1c8778.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="course-content p-3">
+                        <span class="badge bg-danger mb-2">Hóa</span>
+                        <h5><a href="#">Hóa hữu cơ – Nhóm Ancol</a></h5>
+                        <p class="text-muted small">Cập nhật: 22 Sep 2025</p>
+                        <a href="#" class="btn btn-sm btn-outline-danger mt-2">Học ngay</a>
+                    </div>
+                </div>
+                <div class="single-course shadow-sm rounded overflow-hidden">
+                    <div class="course-img">
+                        <img src="https://i.pinimg.com/736x/72/ce/2c/72ce2c38b1b1b7f4548522b5ee1c8778.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="course-content p-3">
+                        <span class="badge bg-info mb-2">Sinh</span>
+                        <h5><a href="#">Hệ tuần hoàn ở người</a></h5>
+                        <p class="text-muted small">Cập nhật: 21 Sep 2025</p>
+                        <a href="#" class="btn btn-sm btn-outline-info mt-2">Học ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

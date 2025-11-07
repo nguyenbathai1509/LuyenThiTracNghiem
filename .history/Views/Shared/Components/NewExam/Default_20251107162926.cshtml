@@ -1,0 +1,115 @@
+@model IEnumerable<dynamic>
+
+<section class="whats-news-area pt-50 pb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- Tab All -->
+                    <div class="tab-pane fade show active" id="all" role="tabpanel">
+                        
+                            @foreach (var exam in Model)
+                            {
+                                
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="@(Url.Content(exam.Image ?? "/images/default-exam.png"))"
+                                             alt="@exam.ExamName"
+                                        />
+                                        <div class="card-body">
+                                            <span class="color1">@exam.SubjectName</span>
+                                            <h5><a href="@exam.ExamId">@exam.ExamName</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Tab Toán -->
+                    <div class="tab-pane fade" id="toan" role="tabpanel">
+                        <div class="row">
+                            @{
+                                var listToan = Model.Where(x => (x.SubjectName ?? "").ToString().ToLower().Contains("toán") 
+                                                               || (x.SubjectName ?? "").ToString().ToLower().Contains("toan"));
+                            }
+                            @foreach (var exam in listToan)
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="@(Url.Content(exam.Image ?? "/images/default-exam.png"))"
+                                             alt="@(Html.Encode((string)exam.ExamName))"
+                                             class="card-img"
+                                             loading="lazy"
+                                             onerror="this.onerror=null;this.src='@Url.Content("~/images/default-exam.png")';" />
+                                        <div class="card-body">
+                                            <span class="color1">@Html.Encode((string)exam.SubjectName)</span>
+                                            <h5><a href="@Url.Action("Details", "Exam", new { id = (int)exam.ExamId })">@Html.Encode((string)exam.ExamName)</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Tab Vật lý -->
+                    <div class="tab-pane fade" id="vatly" role="tabpanel">
+                        <div class="row">
+                            @{
+                                var listVatLy = Model.Where(x => (x.SubjectName ?? "").ToString().ToLower().Contains("vật") 
+                                                                 || (x.SubjectName ?? "").ToString().ToLower().Contains("vat"));
+                            }
+                            @foreach (var exam in listVatLy)
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="@(Url.Content(exam.Image ?? "/images/default-exam.png"))"
+                                             alt="@(Html.Encode((string)exam.ExamName))"
+                                             class="card-img"
+                                             loading="lazy"
+                                             onerror="this.onerror=null;this.src='@Url.Content("~/images/default-exam.png")';" />
+                                        <div class="card-body">
+                                            <span class="color2">@Html.Encode((string)exam.SubjectName)</span>
+                                            <h5><a href="@Url.Action("Details", "Exam", new { id = (int)exam.ExamId })">@Html.Encode((string)exam.ExamName)</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Tab Tiếng Anh -->
+                    <div class="tab-pane fade" id="tienganh" role="tabpanel">
+                        <div class="row">
+                            @{
+                                var listTiengAnh = Model.Where(x => (x.SubjectName ?? "").ToString().ToLower().Contains("anh")
+                                                                   || (x.SubjectName ?? "").ToString().ToLower().Contains("english")
+                                                                   || (x.SubjectName ?? "").ToString().ToLower().Contains("eng"));
+                            }
+                            @foreach (var exam in listTiengAnh)
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="exam-card">
+                                        <img src="@(Url.Content(exam.Image ?? "/images/default-exam.png"))"
+                                             alt="@(Html.Encode((string)exam.ExamName))"
+                                             class="card-img"
+                                             loading="lazy"
+                                             onerror="this.onerror=null;this.src='@Url.Content("~/images/default-exam.png")';" />
+                                        <div class="card-body">
+                                            <span class="color3">@Html.Encode((string)exam.SubjectName)</span>
+                                            <h5><a href="@Url.Action("Details", "Exam", new { id = (int)exam.ExamId })">@Html.Encode((string)exam.ExamName)</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Tab Content -->
+            </div>
+        </div>
+    </div>
+</section>

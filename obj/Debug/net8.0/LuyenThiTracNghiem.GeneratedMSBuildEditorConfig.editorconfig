@@ -1,0 +1,195 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = LuyenThiTracNghiem
+build_property.RootNamespace = LuyenThiTracNghiem
+build_property.ProjectDir = /home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Exam/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhhbS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Exam/delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhhbS9kZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Exam/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhhbS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Exam/EditQuestionInExam.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhhbS9FZGl0UXVlc3Rpb25JbkV4YW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Exam/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhhbS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Exam/_ExamListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhhbS9fRXhhbUxpc3RQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/QuestionAndAnswer/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUXVlc3Rpb25BbmRBbnN3ZXIvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/QuestionAndAnswer/delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUXVlc3Rpb25BbmRBbnN3ZXIvZGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/QuestionAndAnswer/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUXVlc3Rpb25BbmRBbnN3ZXIvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/QuestionAndAnswer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUXVlc3Rpb25BbmRBbnN3ZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/QuestionAndAnswer/_QuestionListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUXVlc3Rpb25BbmRBbnN3ZXIvX1F1ZXN0aW9uTGlzdFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Shared/AdminNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0FkbWluTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Shared/Components/AdminMenu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0NvbXBvbmVudHMvQWRtaW5NZW51L0RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Subject/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3ViamVjdC9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Subject/delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3ViamVjdC9kZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Subject/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3ViamVjdC9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Subject/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3ViamVjdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/Subject/_SubjectListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3ViamVjdC9fU3ViamVjdExpc3RQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/User/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/User/_UserListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9fVXNlckxpc3RQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/ChangePassword/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhbmdlUGFzc3dvcmQvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Payment/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9pbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Payment/PaymentResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9QYXltZW50UmVzdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Register/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVnaXN0ZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Register/RegisterSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVnaXN0ZXIvUmVnaXN0ZXJTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/TopStudents/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvVG9wU3R1ZGVudHMvRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-rfti2wvjht

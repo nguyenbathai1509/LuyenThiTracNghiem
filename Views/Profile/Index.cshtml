@@ -1,0 +1,77 @@
+@model LuyenThiTracNghiem.Models.tblUser
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-info text-white">
+                    <h3>Thông tin cá nhân</h3>
+                </div>
+                <div class="card-body">
+                    <form id="profileForm" method="post">
+                        <input type="hidden" asp-for="Username" class="form-control" value="@Model.FullName" />
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label">Họ và tên</label>
+                            <input asp-for="FullName" id="FullName" class="form-control" value="@Model.FullName" disabled />
+                            <div class="text-danger mt-1" id="FullNameError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BirthDate" class="form-label">Ngày sinh</label>
+                            <input asp-for="BirthDate" id="BirthDate" type="date" class="form-control" 
+                                   value="@(Model.BirthDate?.ToString("yyyy-MM-dd"))" disabled />
+                            <div class="text-danger mt-1" id="BirthDateError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Username" class="form-label">Tên đăng nhập</label>
+                            <input asp-for="Username" id="Username" class="form-control" 
+                                   value="@Model.Username" disabled />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Số điện thoại</label>
+                            <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control" 
+                                   value="@Model.PhoneNumber" disabled />
+                            <div class="text-danger mt-1" id="PhoneNumberError"></div>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" id="Email" type="email" class="form-control" 
+                                   value="@Model.Email" disabled />
+                            <div class="text-danger mt-1" id="EmailError"></div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="button" id="editBtn" class="btn btn-warning">Chỉnh sửa</button>
+                            <button type="button" id="deleteBtn" class="btn btn-danger" data-userid="@Model.UserId">Xóa tài khoản</button>
+
+                            <div>
+                                <button type="submit" id="saveBtn" class="btn btn-success d-none">Lưu thay đổi</button>
+                                <button type="button" id="cancelBtn" class="btn btn-secondary d-none">Hủy</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/assets/js/profile.js" defer></script>

@@ -1,0 +1,121 @@
+@model LuyenThiTracNghiem.Areas.Admin.Models.EditQuestionInExamViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <h2>Edit Questions for: @Model.ExamName</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@error.ErrorMessage</div>
+            }
+        </div>
+    }
+
+    <form asp-action="EditQuestionInExam" method="post">
+        <input type="hidden" asp-for="ExamId" />
+
+        <!-- Search + Filter -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" name="SearchTerm" id="search" placeholder="Search questions..." class="form-control" value="@Model.SearchTerm" />
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(m => m.FilterLevel, (SelectList)ViewBag.LevelList, new { @class = "form-select", id="filterLevel" })
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <p id="summary">Selected: 0 / @Model.QuestionCount</p>
+        <p id="levelSummary">Easy: 0, Medium: 0, Hard: 0</p>
+
+        <!-- Table -->
+        <table class="table table-bordered" id="questionsTable">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Question Text</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Questions.Count; i++)
+{
+    <tr data-level="@Model.Questions[i].Level.ToString()">
+        <td>
+            <input type="checkbox" name="Questions[@i].IsSelected" value="true" class="selectQuestion"
+                   @(Model.Questions[i].IsSelected ? "checked" : "") />
+            <input type="hidden" name="Questions[@i].QuestionId" value="@Model.Questions[i].QuestionId" />
+        </td>
+        <td>@Model.Questions[i].QuestionText</td>
+        <td>@Model.Questions[i].Level</td>
+    </tr>
+}
+
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</main>
+
+<script>
+const searchInput = document.getElementById('search');
+const filterLevel = document.getElementById('filterLevel');
+const tableRows = document.querySelectorAll('#questionsTable tbody tr');
+const summary = document.getElementById('summary');
+const levelSummary = document.getElementById('levelSummary');
+
+function updateSummary() {
+    const selected = Array.from(document.querySelectorAll('.selectQuestion')).filter(cb => cb.checked);
+    const totalSelected = selected.length;
+
+    const levels = { Easy:0, Medium:0, Hard:0 };
+    selected.forEach(cb => {
+        const level = cb.closest('tr').dataset.level;
+        levels[level]++;
+    });
+
+    summary.textContent = `Selected: ${totalSelected} / @Model.QuestionCount`;
+    levelSummary.textContent = `Easy: ${levels.Easy}, Medium: ${levels.Medium}, Hard: ${levels.Hard}`;
+
+    if(totalSelected > @Model.QuestionCount){
+        summary.style.color = "red";
+    } else if(totalSelected < @Model.QuestionCount){
+        summary.style.color = "orange";
+    } else {
+        summary.style.color = "green";
+    }
+}
+
+function filterRows() {
+    const term = searchInput.value.toLowerCase();
+    const level = filterLevel.value;
+
+    tableRows.forEach(row => {
+        const textMatch = row.cells[1].innerText.toLowerCase().includes(term);
+        const levelMatch = !level || row.dataset.level === level;
+        row.style.display = (textMatch && levelMatch) ? '' : 'none';
+    });
+
+    updateSummary();
+}
+
+// Events
+searchInput.addEventListener('input', filterRows);
+filterLevel.addEventListener('change', filterRows);
+document.querySelectorAll('.selectQuestion').forEach(cb => cb.addEventListener('change', updateSummary));
+
+// Init
+updateSummary();
+</script>

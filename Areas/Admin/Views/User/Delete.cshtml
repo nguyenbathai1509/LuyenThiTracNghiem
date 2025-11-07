@@ -1,0 +1,53 @@
+@model LuyenThiTracNghiem.Models.tblUser
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Delete User</h2>
+    </div>
+
+    <form id="registerForm" asp-action="Delete" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input asp-for="UserId" class="form-control" type="hidden"/>
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label">Full Name</label>
+            <input asp-for="FullName" id="FullName" class="form-control" disabled/>
+            <div id="FullNameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label">Username</label>
+            <input asp-for="Username" id="Username" class="form-control" disabled/>
+            <div id="UsernameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control" disabled/>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div id="PhoneNumberError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" id="Email" type="email" class="form-control" disabled/>
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <div id="EmailError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Role" class="form-label">Role</label>
+            <input asp-for="Role" id="Role" type="text" class="form-control" disabled/>
+            <div id="RoleError" class="text-danger"></div>
+        </div>
+
+        <button type="button" id="deleteBtn" class="btn btn-danger" data-userid="@Model.UserId"><i class="fas fa-trash-alt me-1"></i> Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/admin/assets/js/delete-account.js" defer></script>

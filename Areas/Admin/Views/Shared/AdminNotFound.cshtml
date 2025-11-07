@@ -1,0 +1,19 @@
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main" class="d-flex flex-column justify-content-center align-items-center" style="min-height:70vh;">
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center p-3 rounded shadow-sm" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i> @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <h1 class="display-4 text-danger fw-bold mb-3">404 - Not Found (Admin)</h1>
+    <p class="text-muted mb-4">Xin lỗi, trang quản trị bạn đang tìm kiếm không tồn tại.</p>
+
+    <a href="javascript:history.back()" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Quay lại
+    </a>
+</main>

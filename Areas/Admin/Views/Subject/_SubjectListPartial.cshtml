@@ -1,0 +1,83 @@
+@model LuyenThiTracNghiem.Areas.Admin.Models.PagedResult<LuyenThiTracNghiem.Areas.Admin.Models.tblSubject>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Subject Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.SubjectId</td>
+                    <td class="fw-semibold">@item.SubjectName</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="~/admin/images/img-subject/@item.Image" width="60" class="img-thumbnail" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">No image</span>
+                        }
+                    </td>
+                    <td>
+                        <span class="status-badge @(item.Status ? "status-active" : "status-inactive")">
+                            @(item.Status ? "Active" : "Inactive")
+                        </span>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a class="btn btn-warning btn-sm" asp-area="Admin" asp-controller="Subject" asp-action="Edit" asp-route-SubjectId="@item.SubjectId">
+                                <i class="fas fa-edit me-1"></i>Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-area="Admin" asp-controller="Subject" asp-action="Delete" asp-route-SubjectId="@item.SubjectId">
+                                <i class="fas fa-trash me-1"></i>Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No subjects found</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                <a class="page-link" href="#" data-page="@(Model.PageNumber - 1)">Previous</a>
+            </li>
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" href="#" data-page="@i">@i</a>
+                </li>
+            }
+
+            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="#" data-page="@(Model.PageNumber + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+}

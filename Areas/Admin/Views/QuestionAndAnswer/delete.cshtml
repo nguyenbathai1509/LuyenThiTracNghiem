@@ -1,0 +1,27 @@
+@model LuyenThiTracNghiem.Areas.Admin.Models.tblQuestion
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Xóa Câu Hỏi</h2>
+    </div>
+
+    <form id="deleteForm">
+        @Html.AntiForgeryToken()
+        <input asp-for="QuestionId" type="hidden" />
+        <div class="mb-3">
+            <label asp-for="QuestionText" class="form-label">Nội dung câu hỏi</label>
+            <input asp-for="QuestionText" class="form-control" disabled />
+        </div>
+
+        <button type="button" id="deleteBtn" class="btn btn-danger" data-questionid="@Model.QuestionId">
+            <i class="fas fa-trash-alt me-1"></i> Xóa
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Trở lại</a>
+    </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/admin/assets/js/delete-question.js" defer></script>

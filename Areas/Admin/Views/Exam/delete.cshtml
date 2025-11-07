@@ -1,0 +1,33 @@
+@model LuyenThiTracNghiem.Areas.Admin.Models.tblExam
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Delete Exam</h2>
+    </div>
+
+    <form id="registerForm" asp-action="Delete" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input asp-for="ExamId" class="form-control" type="hidden"/>
+
+        <div class="mb-3">
+            <label asp-for="ExamName" class="form-label">Exam Name</label>
+            <input asp-for="ExamName" id="ExamName" class="form-control" disabled/>
+            <div id="ExamNameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ExamId" class="form-label">ExamId</label>
+            <input asp-for="ExamId" id="ExamId" class="form-control" disabled/>
+            <div id="ExamIdError" class="text-danger"></div>
+        </div>
+
+        <button type="button" id="deleteBtn" class="btn btn-danger" data-examid="@Model.ExamId"><i class="fas fa-trash-alt me-1"></i> Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/admin/assets/js/delete-exam.js" defer></script>

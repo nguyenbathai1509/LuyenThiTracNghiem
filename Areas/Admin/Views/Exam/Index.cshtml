@@ -1,0 +1,68 @@
+@using LuyenThiTracNghiem.Areas.Admin.Models
+@using LuyenThiTracNghiem.Models
+@model PagedResult<tblExam>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Exam Management</h2>
+        <a class="btn btn-primary mb-2" asp-area="Admin" asp-controller="Exam" asp-action="Create">
+            <i class="fas fa-plus me-2"></i>Add Exam
+        </a>
+    </div>
+
+    <!-- Search Box -->
+    <div class="card mb-4 border-0 shadow-sm">
+        <div class="card-body">
+            <div class="row g-3 align-items-center">
+                <!-- Search Box bên trái -->
+                <div class="col-md-4">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="form-control" placeholder="Search exams..." id="searchInput">
+                    </div>
+                </div>
+
+                <!-- Dropdown Subject -->
+                <div class="col-md-3">
+                    <select id="subjectFilter" class="form-select">
+                        <option value="">-- All Subjects --</option>
+                        @foreach (var subject in (ViewBag.Subjects as List<LuyenThiTracNghiem.Areas.Admin.Models.tblSubject>) ?? new List<LuyenThiTracNghiem.Areas.Admin.Models.tblSubject>())
+                        {
+                            <option value="@subject.SubjectId">@subject.SubjectName</option>
+                        }
+                    </select>
+                </div>
+
+                <!-- Dropdown ExamType -->
+                <div class="col-md-3">
+                    <select id="examTypeFilter" class="form-select">
+                        <option value="">-- All Types --</option>
+                        <option value="Thử nghiệm">Thử nghiệm</option>
+                        <option value="Chính thức">Chính thức</option>
+                    </select>
+                </div>
+
+                <!-- Filter button -->
+                <div class="col-md-2">
+                    <button class="btn btn-success w-100" id="filterBtn">
+                        <i class="fas fa-filter me-1"></i>Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Danh sách Exam -->
+    <div id="examList">
+        @await Html.PartialAsync("_ExamListPartial", Model)
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="~/admin/assets/js/subject-index.js"></script>

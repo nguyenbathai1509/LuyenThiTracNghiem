@@ -1,0 +1,104 @@
+@model LuyenThiTracNghiem.Models.tblUser
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Create User</h2>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <form id="registerForm" asp-action="Edit" method="post" enctype="multipart/form-data">
+
+        <input asp-for="UserId" class="form-control" type="hidden"/>
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label">Full Name</label>
+            <input asp-for="FullName" id="FullName" class="form-control" />
+            <div id="FullNameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BirthDate" class="form-label">Birth Date</label>
+            <input asp-for="BirthDate" id="BirthDate" type="date" class="form-control" />
+            <div id="BirthDateError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Gender" class="form-label">Gender</label>
+            <select asp-for="Gender" id="Gender" class="form-select">
+                <option value="">-- Select Gender --</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+            <div id="GenderError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label">Username</label>
+            <input asp-for="Username" id="Username" class="form-control" readonly />
+            <div id="UsernameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PasswordHash" class="form-label">Password</label>
+            <input asp-for="PasswordHash" id="PasswordHash" type="text" class="form-control" />
+            <div id="PasswordHashError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div id="PhoneNumberError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" id="Email" type="email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <div id="EmailError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Avatar</label>
+            <input type="file" name="AvatarFile" class="form-control" accept=".jpg,.jpeg,.png,.gif" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Role" class="form-label">Role</label>
+            <select asp-for="Role" id="Role" name="Role" class="form-select">
+                <option value="">-- Select Role --</option>
+                <option value="1">Admin</option>
+                <option value="2">User</option>
+            </select>
+            <div id="RoleError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="Status" class="form-check-input"/>
+            <label asp-for="Status" class="form-check-label">Active</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</main>
+
+<script src="~/assets/js/register-validation.js"></script>

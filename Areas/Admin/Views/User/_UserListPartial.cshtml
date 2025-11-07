@@ -1,0 +1,72 @@
+@using LuyenThiTracNghiem.Areas.Admin.Models;
+@model PagedResult<tblUser>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Gender</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if(Model.Items.Any())
+        {
+            foreach(var user in Model.Items)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.FullName</td>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@(user.Role == 1 ? "Admin" : "User")</td>
+                    <td>@user.Gender</td>
+                    <td>
+                        <span class="badge @(user.Status ? "bg-success" : "bg-secondary")">
+                            @(user.Status ? "Active" : "Inactive")
+                        </span>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-userId="@user.UserId">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-userId="@user.UserId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9" class="text-center text-muted">No users found</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@if(Model.TotalPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                <a class="page-link" href="#" data-page="@(Model.PageNumber - 1)">Previous</a>
+            </li>
+            @for(int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" href="#" data-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="#" data-page="@(Model.PageNumber + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+}

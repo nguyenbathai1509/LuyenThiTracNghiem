@@ -1,0 +1,33 @@
+@model LuyenThiTracNghiem.Areas.Admin.Models.tblSubject
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Delete Subject</h2>
+    </div>
+
+    <form id="registerForm" asp-action="Delete" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input asp-for="SubjectId" class="form-control" type="hidden"/>
+
+        <div class="mb-3">
+            <label asp-for="SubjectName" class="form-label">Subject Name</label>
+            <input asp-for="SubjectName" id="SubjectName" class="form-control" disabled/>
+            <div id="SubjectNameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="SubjectId" class="form-label">SubjectId</label>
+            <input asp-for="SubjectId" id="SubjectId" class="form-control" disabled/>
+            <div id="SubjectIdError" class="text-danger"></div>
+        </div>
+
+        <button type="button" id="deleteBtn" class="btn btn-danger" data-subjectid="@Model.SubjectId"><i class="fas fa-trash-alt me-1"></i> Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/admin/assets/js/delete-subject.js" defer></script>

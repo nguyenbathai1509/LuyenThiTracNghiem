@@ -1,0 +1,78 @@
+@model LuyenThiTracNghiem.Areas.Admin.Models.PagedResult<LuyenThiTracNghiem.Areas.Admin.Models.tblQuestion>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>QuestionText</th>
+                <th>SubjectId</th>
+                <th>Level</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.QuestionId</td>
+                    <td class="fw-semibold">@item.QuestionText</td>
+                    <td>
+                        @item.SubjectId
+                    </td>
+                    <td>
+                        @item.Level
+                    </td>
+                    <td>
+                        <span class="status-badge @(item.Status ? "status-active" : "status-inactive")">
+                            @(item.Status ? "Active" : "Inactive")
+                        </span>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a class="btn btn-warning btn-sm" asp-area="Admin" asp-controller="QuestionAndAnswer" asp-action="Edit" asp-route-QuestionId="@item.QuestionId">
+                                <i class="fas fa-edit me-1"></i>Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-area="Admin" asp-controller="QuestionAndAnswer" asp-action="Delete" asp-route-QuestionId="@item.QuestionId">
+                                <i class="fas fa-trash me-1"></i>Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No question found</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                <a class="page-link" href="#" data-page="@(Model.PageNumber - 1)">Previous</a>
+            </li>
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" href="#" data-page="@i">@i</a>
+                </li>
+            }
+
+            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="#" data-page="@(Model.PageNumber + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+}

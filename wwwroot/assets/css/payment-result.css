@@ -1,0 +1,200 @@
+
+.payment-result-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.payment-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 500px;
+    width: 100%;
+    animation: slideUp 0.5s ease-out;
+}
+
+.payment-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.payment-title {
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.payment-body {
+    padding: 40px 30px;
+}
+
+.status-icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.status-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.status-text {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.payment-details {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #495057;
+    flex: 1;
+}
+
+.detail-value {
+    font-weight: 500;
+    color: #212529;
+    flex: 1;
+    text-align: right;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-success-badge {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-failure-badge {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.note-text {
+    font-style: italic;
+    color: #6c757d;
+}
+
+.countdown-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.countdown-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.countdown-timer {
+    display: inline-block;
+    background: #ffc107;
+    color: #212529;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 700;
+    min-width: 30px;
+    text-align: center;
+    animation: pulse 1s infinite;
+}
+
+.action-section {
+    text-align: center;
+}
+
+.back-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-card {
+        margin: 10px;
+    }
+    
+    .payment-body {
+        padding: 30px 20px;
+    }
+    
+    .payment-details {
+        padding: 20px 15px;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .detail-value {
+        text-align: left;
+        margin-top: 5px;
+    }
+}

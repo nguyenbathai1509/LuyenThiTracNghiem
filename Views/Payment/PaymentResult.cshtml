@@ -1,0 +1,96 @@
+@model LuyenThiTracNghiem.Models.tblPayment
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Kết quả thanh toán";
+    var redirectUrl = Configuration["MyApp:LocalPaymentUrl"];
+}
+
+<div class="payment-result-container">
+    <div class="payment-card">
+        <div class="payment-header">
+            <h3 class="payment-title">💳 Kết quả thanh toán</h3>
+        </div>
+        
+        <div class="payment-body">
+            @if (Model.PaymentStatus == "Success")
+            {
+                <div class="status-success">
+                    <div class="status-icon">
+                        <img src="~/images/success.gif" alt="Thanh toán thành công" class="status-image" />
+                    </div>
+                    <h4 class="status-text text-success">Thanh toán thành công!</h4>
+                </div>
+            }
+            else
+            {
+                <div class="status-failure">
+                    <div class="status-icon">
+                        <img src="~/images/failure.gif" alt="Thanh toán thất bại" class="status-image" />
+                    </div>
+                    <h4 class="status-text text-danger">Thanh toán thất bại!</h4>
+                </div>
+            }
+
+            <div class="payment-details">
+                <div class="detail-item">
+                    <span class="detail-label">Mã đơn hàng:</span>
+                    <span class="detail-value">@Model.PaymentId</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Số tiền:</span>
+                    <span class="detail-value">@Model.Amount.ToString("N0") VNĐ</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Trạng thái:</span>
+                    <span class="detail-value status-badge @(Model.PaymentStatus == "Success" ? "status-success-badge" : "status-failure-badge")">
+                        @Model.PaymentStatus
+                    </span>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.TransactionCode))
+                {
+                    <div class="detail-item">
+                        <span class="detail-label">Mã giao dịch:</span>
+                        <span class="detail-value">@Model.TransactionCode</span>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Note))
+                {
+                    <div class="detail-item">
+                        <span class="detail-label">Ghi chú:</span>
+                        <span class="detail-value note-text">@Model.Note</span>
+                    </div>
+                }
+            </div>
+
+            <div class="countdown-section">
+                <p class="countdown-text">
+                    Trang sẽ tự động quay lại <strong>trang nạp tiền</strong> sau 
+                    <span class="countdown-timer" id="countdown">10</span> giây...
+                </p>
+            </div>
+
+            <div class="action-section">
+                <a href="@redirectUrl" class="btn btn-primary back-button">
+                    <i class="fas fa-arrow-left me-2"></i>Quay lại trang nạp tiền
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/assets/css/payment-result.css" asp-append-version="true" />
+
+<script>
+    let countdown = 10;
+    const countdownEl = document.getElementById('countdown');
+
+    const timer = setInterval(() => {
+        countdown--;
+        countdownEl.textContent = countdown;
+        if (countdown <= 0) {
+            clearInterval(timer);
+            window.location.href = "@redirectUrl";
+        }
+    }, 1000);
+</script>

@@ -31,5 +31,10 @@ namespace LuyenThiTracNghiem.Utilities
             }
             return str;
         }
+
+        public static string TitleSlugGeneration(string? title, long id)
+        {
+            return SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString() + ".html";
+        }
     }
 }

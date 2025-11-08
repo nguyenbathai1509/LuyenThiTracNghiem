@@ -1,3 +1,4 @@
+@using LuyenThiTracNghiem.Utilities
 @model IEnumerable<dynamic>
 
 <div class="row">
@@ -5,6 +6,7 @@
         <div class="weekly-news-active dot-style d-flex">
             @foreach (var exam in Model)
             {
+                string url = Functions.TitleSlugGeneration(exam.ExamName, exam.ExamId);
                 <div class="weekly-single exam-card">
                     <div class="weekly-img">
                         <img src="@(exam.Image ?? "/images/default-exam.png")" 
@@ -15,7 +17,7 @@
                     <div class="weekly-caption">
                         <span class="color1">@exam.SubjectId</span>
                         <h4>
-                            <a href="/Exam/Details/@exam.ExamId">@exam.ExamName</a>
+                            <a href="/@url">@exam.ExamName</a>
                         </h4>
                     </div>
                 </div>

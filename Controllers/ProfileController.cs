@@ -87,7 +87,6 @@ namespace LuyenThiTracNghiem.Controllers
             int? sessionUserId = HttpContext.Session.GetInt32("UserId");
             if (sessionUserId == null || sessionUserId != request.Id)
             {
-                // chỉ cho phép xóa chính tài khoản của mình
                 return Unauthorized();
             }
 
@@ -98,7 +97,6 @@ namespace LuyenThiTracNghiem.Controllers
             _context.Users.Remove(user);
             _context.SaveChanges();
 
-            // Xóa session sau khi xóa tài khoản
             HttpContext.Session.Clear();
 
             return Ok();

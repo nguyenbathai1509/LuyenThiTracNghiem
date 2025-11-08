@@ -268,3 +268,4 @@
 /home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/obj/Debug/net8.0/ref/LuyenThiTracNghiem.dll
 /home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/bin/Debug/net8.0/VNPAY.NET.dll
 /home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/obj/Debug/net8.0/LuyenThiTracNghiem.sourcelink.json
+/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/bin/Debug/net8.0/SlugGenerator.dll

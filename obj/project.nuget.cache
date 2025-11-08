@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MussR9neb2U=",
+  "dgSpecHash": "1TIqJsv+Bds=",
   "success": true,
   "projectFilePath": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/LuyenThiTracNghiem.csproj",
   "expectedPackageFiles": [
@@ -133,6 +133,7 @@
     "/home/nguyenbathai/.nuget/packages/nuget.projectmodel/6.11.0/nuget.projectmodel.6.11.0.nupkg.sha512",
     "/home/nguyenbathai/.nuget/packages/nuget.protocol/6.11.0/nuget.protocol.6.11.0.nupkg.sha512",
     "/home/nguyenbathai/.nuget/packages/nuget.versioning/6.11.0/nuget.versioning.6.11.0.nupkg.sha512",
+    "/home/nguyenbathai/.nuget/packages/sluggenerator/2.0.2/sluggenerator.2.0.2.nupkg.sha512",
     "/home/nguyenbathai/.nuget/packages/system.clientmodel/1.0.0/system.clientmodel.1.0.0.nupkg.sha512",
     "/home/nguyenbathai/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
     "/home/nguyenbathai/.nuget/packages/system.collections.immutable/8.0.0/system.collections.immutable.8.0.0.nupkg.sha512",

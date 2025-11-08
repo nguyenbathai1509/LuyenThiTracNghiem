@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vU3JLEagOCVMydEm6RW/rDVKZ1IGtD8eNPcNO+Cpazk=",
+  "Hash": "Ffrdbqtuv99rqwIZIorLFAKhF9z4C5Raxd+ZHljjzmw=",
   "Source": "LuyenThiTracNghiem",
   "BasePath": "_content/LuyenThiTracNghiem",
   "Mode": "Default",
@@ -16661,6 +16661,25 @@
       "OriginalItemSpec": "wwwroot/assets/css/style.map"
     },
     {
+      "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/take-exam.css",
+      "SourceId": "LuyenThiTracNghiem",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/",
+      "BasePath": "_content/LuyenThiTracNghiem",
+      "RelativePath": "assets/css/take-exam.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/css/take-exam.css"
+    },
+    {
       "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/themify-icons.css",
       "SourceId": "LuyenThiTracNghiem",
       "SourceType": "Discovered",
@@ -20307,6 +20326,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/js/slick.min.js"
+    },
+    {
+      "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/take-exam.js",
+      "SourceId": "LuyenThiTracNghiem",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/",
+      "BasePath": "_content/LuyenThiTracNghiem",
+      "RelativePath": "assets/js/take-exam.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/js/take-exam.js"
     },
     {
       "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/vendor/jquery-1.12.4.min.js",

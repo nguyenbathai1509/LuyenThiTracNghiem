@@ -3501,6 +3501,10 @@
       "PackagePath": "staticwebassets/assets/css/style.map"
     },
     {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/take-exam.css",
+      "PackagePath": "staticwebassets/assets/css/take-exam.css"
+    },
+    {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/themify-icons.css",
       "PackagePath": "staticwebassets/assets/css/themify-icons.css"
     },
@@ -4267,6 +4271,10 @@
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/slick.min.js",
       "PackagePath": "staticwebassets/assets/js/slick.min.js"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/take-exam.js",
+      "PackagePath": "staticwebassets/assets/js/take-exam.js"
     },
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/vendor/jquery-1.12.4.min.js",

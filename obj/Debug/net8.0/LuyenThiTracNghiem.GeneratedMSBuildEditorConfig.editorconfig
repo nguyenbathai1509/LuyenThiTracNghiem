@@ -138,8 +138,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhbmdlUGFzc3dvcmQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Home/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EZXRhaWxzLmNzaHRtbA==
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Home/ExamInfor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FeGFtSW5mb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Home/Index.cshtml]
@@ -196,6 +196,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/TakeExam/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFrZUV4YW0vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/_ViewImports.cshtml]

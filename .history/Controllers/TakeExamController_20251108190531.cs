@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LuyenThiTracNghiem.Controllers
+{
+    public class TakeExamController : Controller
+    {
+        private readonly DataContext _context;
+        public ProfileController(DataContext context)
+        {
+            _context = context;
+        }
+    }
+}

@@ -1,0 +1,278 @@
+@model LuyenThiTracNghiem.Models.TakeExamViewModel
+@{
+    Layout = "_Layout";
+}
+
+<section class="exam-taking-area pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+            <!-- Main content -->
+            <div class="col-lg-9">
+                <div class="card mb-3 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h4 class="mb-0">@Html.Encode(Model.ExamName)</h4>
+                            <small class="text-muted">Mã lượt thi: <strong>@Model.AttemptId</strong></small>
+                        </div>
+                        <div class="text-end">
+                            <div><strong>Số câu:</strong> @Model.Questions.Count</div>
+                            <div class="mt-1"><strong>Thời gian còn lại:</strong> <span id="timeDisplay">--:--</span></div>
+                        </div>
+                    </div>
+
+                    <form id="examForm" method="post" asp-action="Submit" asp-controller="TakeExam">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="attemptId" name="attemptId" value="@Model.AttemptId" />
+
+                        <div id="questionsList">
+                            @for (int i = 0; i < Model.Questions.Count; i++)
+                            {
+                                var q = Model.Questions[i];
+                                <div class="question mb-4 p-3 border rounded" data-qid="@q.QuestionId" id="q-@q.QuestionId">
+                                    <div class="mb-2">
+                                        <strong>Câu @(@i + 1):</strong>
+                                        <div class="mt-2">@Html.Raw(System.Net.WebUtility.HtmlEncode(q.QuestionText).Replace("\n","<br/>"))</div>
+                                    </div>
+
+                                    <div class="answers mt-2">
+                                        @foreach (var a in q.Answers)
+                                        {
+                                            var inputId = $"a-{q.QuestionId}-{a.AnswerId}";
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input answer-radio" type="radio"
+                                                       name="q_@q.QuestionId"
+                                                       id="@inputId"
+                                                       value="@a.AnswerId"
+                                                       data-qid="@q.QuestionId"
+                                                       data-aid="@a.AnswerId" />
+                                                <label class="form-check-label" for="@inputId">
+                                                    @Html.Raw(System.Net.WebUtility.HtmlEncode(a.AnswerText))
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <button type="button" id="submitBtn" class="btn btn-danger btn-lg">
+                                <i class="fas fa-check-circle me-2"></i> Nộp bài
+                            </button>
+
+                            <button type="button" id="saveAllBtn" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-save me-2"></i> Lưu tạm (Lưu tất cả)
+                            </button>
+
+                            <button type="button" id="finishLaterBtn" class="btn btn-outline-secondary btn-lg ms-auto" title="Thoát và quay lại sau">
+                                <i class="fas fa-door-open me-2"></i> Rời khỏi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card mb-3">
+                    <div class="card-header">Trạng thái câu</div>
+                    <div class="card-body">
+                        <ul id="questionStatus" class="list-unstyled">
+                            @for (int i = 0; i < Model.Questions.Count; i++)
+                            {
+                                var q = Model.Questions[i];
+                                <li class="mb-2 d-flex justify-content-between align-items-center" data-qid="@q.QuestionId">
+                                    <a class="question-link" href="#q-@q.QuestionId">Câu @(@i + 1)</a>
+                                    <span class="badge bg-secondary status-badge">Chưa làm</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Ghi chú</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Hệ thống sẽ tự lưu khi bạn chọn đáp án.</li>
+                            <li>Không làm mới trang (F5) nếu chưa nộp bài.</li>
+                            <li>Hết giờ hệ thống sẽ tự nộp bài.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    // --- init data from server ---
+    const attemptId = parseInt(document.getElementById('attemptId').value, 10);
+    let remaining = @Model.TimeRemainingSeconds; // seconds from server (integer)
+    const timeDisplay = document.getElementById('timeDisplay');
+
+    function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = s % 60;
+        return `${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+    }
+
+    // Timer tick
+    function tick() {
+        if (remaining <= 0) {
+            timeDisplay.textContent = "00:00";
+            autoSubmit();
+            return;
+        }
+        timeDisplay.textContent = formatTime(remaining);
+        remaining--;
+    }
+
+    tick();
+    const timerInterval = setInterval(tick, 1000);
+
+    // Update sidebar statuses
+    function updateStatusBadges() {
+        document.querySelectorAll('#questionStatus li').forEach(li => {
+            const qid = li.getAttribute('data-qid');
+            const checked = document.querySelector(`input[name="q_${qid}"]:checked`);
+            const badge = li.querySelector('.status-badge');
+            if (checked) {
+                badge.textContent = 'Đã làm';
+                badge.className = 'badge bg-success status-badge';
+            } else {
+                badge.textContent = 'Chưa làm';
+                badge.className = 'badge bg-secondary status-badge';
+            }
+        });
+    }
+
+    // Get antiforgery token
+    function getRequestVerificationToken() {
+        const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+        return tokenInput ? tokenInput.value : '';
+    }
+
+    // Save one answer (autosave)
+    async function saveAnswer(questionId, answerId) {
+        const token = getRequestVerificationToken();
+        const fd = new FormData();
+        fd.append('__RequestVerificationToken', token);
+        fd.append('attemptId', attemptId);
+        fd.append('questionId', questionId);
+        if (answerId !== null && answerId !== undefined) fd.append('answerId', answerId);
+
+        try {
+            const res = await fetch('@Url.Action("SaveAnswer","TakeExam")', {
+                method: 'POST',
+                body: fd,
+                credentials: 'same-origin'
+            });
+            // optional: handle json
+            if (!res.ok) console.warn('SaveAnswer failed', res.status);
+        } catch (err) {
+            console.error('SaveAnswer error', err);
+        }
+    }
+
+    // Attach change listeners to radio inputs for autosave
+    document.querySelectorAll('.answer-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const qid = this.getAttribute('data-qid');
+            const aid = this.getAttribute('data-aid');
+            updateStatusBadges();
+            saveAnswer(qid, aid);
+        });
+    });
+
+    // Manual save all selected answers
+    document.getElementById('saveAllBtn').addEventListener('click', function() {
+        document.querySelectorAll('.question').forEach(qDiv => {
+            const qid = qDiv.getAttribute('data-qid');
+            const sel = qDiv.querySelector('input[type=radio]:checked');
+            const aid = sel ? sel.value : null;
+            saveAnswer(qid, aid);
+        });
+        // small UI feedback
+        this.classList.add('btn-success');
+        setTimeout(() => this.classList.remove('btn-success'), 1000);
+        alert('Đã lưu tạm các câu đã chọn.');
+    });
+
+    // Submit exam
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        if (!confirm('Bạn có chắc chắn muốn nộp bài? Sau khi nộp không thể sửa.')) return;
+        // stop timer
+        clearInterval(timerInterval);
+        submitExam();
+    });
+
+    // Finish later (just navigate away but keep attempt running)
+    document.getElementById('finishLaterBtn').addEventListener('click', function() {
+        if (!confirm('Bạn sẽ rời trang làm bài. Lượt thi vẫn đang chạy. Bạn có chắc?')) return;
+        window.location.href = '/'; // or any page you want
+    });
+
+    // Submit by POST to Submit action; handle redirect
+    async function submitExam() {
+        const token = getRequestVerificationToken();
+        const fd = new FormData();
+        fd.append('__RequestVerificationToken', token);
+        fd.append('attemptId', attemptId);
+
+        try {
+            const res = await fetch('@Url.Action("Submit","TakeExam")', {
+                method: 'POST',
+                body: fd,
+                credentials: 'same-origin'
+            });
+
+            // if server redirects, follow it
+            if (res.redirected) {
+                window.location.href = res.url;
+                return;
+            }
+
+            if (res.ok) {
+                // try to parse json or reload
+                const txt = await res.text();
+                // fallback: reload (or redirect to result page if server returns URL)
+                location.reload();
+            } else {
+                alert('Nộp bài thất bại. Vui lòng thử lại.');
+            }
+        } catch (err) {
+            console.error('submitExam error', err);
+            alert('Có lỗi khi nộp bài.');
+        }
+    }
+
+    // Auto submit when time runs out
+    function autoSubmit() {
+        alert('Hết thời gian, hệ thống sẽ tự nộp bài.');
+        submitExam();
+    }
+
+    // Jump to question when clicking sidebar link
+    document.querySelectorAll('.question-link').forEach(a => {
+        a.addEventListener('click', function(ev) {
+            ev.preventDefault();
+            const href = this.getAttribute('href');
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // optionally highlight
+                target.classList.add('border-primary');
+                setTimeout(()=> target.classList.remove('border-primary'), 1200);
+            }
+        });
+    });
+
+    // initial badges
+    updateStatusBadges();
+
+    // Optional: periodically refresh remaining time from server every X minutes
+    // Optional: store answers in localStorage as backup
+</script>
+}

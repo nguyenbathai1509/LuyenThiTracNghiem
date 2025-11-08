@@ -1,0 +1,122 @@
+@model LuyenThiTracNghiem.Models.ViewModels.TakeExamViewModel
+
+
+@{
+    Layout = "_Layout";
+}
+
+<section class="exam-taking-area pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+            <!-- Main -->
+            <div class="col-lg-9">
+                <div class="card mb-3 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h4 class="mb-0">@Html.Encode(Model.ExamName)</h4>
+                            <small class="text-muted">Mã lượt thi: <strong>@Model.AttemptId</strong></small>
+                        </div>
+                        <div class="text-end">
+                            <div><strong>Số câu:</strong> @Model.Questions.Count</div>
+                            <div class="mt-1"><strong>Thời gian còn lại:</strong> <span id="timeDisplay">--:--</span></div>
+                        </div>
+                    </div>
+
+                    <form id="examForm" method="post" asp-action="Submit" asp-controller="TakeExam">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="attemptId" name="attemptId" value="@Model.AttemptId" />
+
+                        <div id="questionsList">
+                            @for (int i = 0; i < Model.Questions.Count; i++)
+                            {
+                                var q = Model.Questions[i];
+                                <div class="question mb-4 p-3 border rounded" data-qid="@q.QuestionId" id="q-@q.QuestionId">
+                                    <div class="mb-2">
+                                        <strong>Câu @(@i + 1):</strong>
+                                        <div class="mt-2">@Html.Raw(System.Net.WebUtility.HtmlEncode(q.QuestionText).Replace("\n","<br/>"))</div>
+                                    </div>
+
+                                    <div class="answers mt-2">
+                                        @foreach (var a in q.Answers)
+                                        {
+                                            var inputId = $"a-{q.QuestionId}-{a.AnswerId}";
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input answer-radio" type="radio"
+                                                       name="q_@q.QuestionId"
+                                                       id="@inputId"
+                                                       value="@a.AnswerId"
+                                                       data-qid="@q.QuestionId"
+                                                       data-aid="@a.AnswerId" />
+                                                <label class="form-check-label" for="@inputId">
+                                                    @Html.Raw(System.Net.WebUtility.HtmlEncode(a.AnswerText))
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <button type="button" id="submitBtn" class="btn btn-danger btn-lg">
+                                <i class="fas fa-check-circle me-2"></i> Nộp bài
+                            </button>
+
+                            <button type="button" id="saveAllBtn" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-save me-2"></i> Lưu tạm (Lưu tất cả)
+                            </button>
+
+                            <button type="button" id="finishLaterBtn" class="btn btn-outline-secondary btn-lg ms-auto" title="Thoát và quay lại sau">
+                                <i class="fas fa-door-open me-2"></i> Rời khỏi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card mb-3">
+                    <div class="card-header">Trạng thái câu</div>
+                    <div class="card-body">
+                        <ul id="questionStatus" class="list-unstyled">
+                            @for (int i = 0; i < Model.Questions.Count; i++)
+                            {
+                                var q = Model.Questions[i];
+                                <li class="mb-2 d-flex justify-content-between align-items-center" data-qid="@q.QuestionId">
+                                    <a class="question-link" href="#q-@q.QuestionId">Câu @(@i + 1)</a>
+                                    <span class="badge bg-secondary status-badge">Chưa làm</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Ghi chú</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Hệ thống sẽ tự lưu khi bạn chọn đáp án.</li>
+                            <li>Không làm mới trang (F5) nếu chưa nộp bài.</li>
+                            <li>Hết giờ hệ thống sẽ tự nộp bài.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Truyền cấu hình cho JS (không chứa logic) -->
+<script>
+    window.takeExamInit = {
+        attemptId: @Model.AttemptId,
+        timeRemaining: @Model.TimeRemainingSeconds,
+        saveAnswerUrl: '@Url.Action("SaveAnswer","TakeExam")',
+        submitUrl: '@Url.Action("Submit","TakeExam")',
+        // nếu bạn đặt view ở vị trí khác và cần redirect url kết quả, có thể thêm resultUrl
+    };
+</script>
+
+<!-- Load external JS (place file at wwwroot/js/takeexam.js) -->
+<script src="~/js/takeexam.js" asp-append-version="true"></script>

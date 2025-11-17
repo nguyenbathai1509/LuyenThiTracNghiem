@@ -1,0 +1,76 @@
+@using LuyenThiTracNghiem.Areas.Admin.Models;
+@model PagedResult<tblUser>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>User Management</h2>
+        <a class="btn btn-primary mb-2" asp-controller="User" asp-action="Create">
+            <i class="fas fa-plus me-2"></i>Add User
+        </a>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="card mb-4 shadow-sm border-0">
+        <div class="card-body">
+            <div class="row g-3 align-items-center">
+                <!-- Search -->
+                <div class="col-md-4">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="form-control" placeholder="Search users..." id="searchInput">
+                    </div>
+                </div>
+
+                <!-- Filter Role -->
+                <div class="col-md-3 ms-auto">
+                    <select id="roleFilter" class="form-select">
+                        <option value="">-- All Roles --</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User List -->
+    <div id="userList">
+        @await Html.PartialAsync("_UserListPartial", Model)
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    function loadData(page = 1) {
+        const searchTerm = $("#searchInput").val();
+        const role = $("#roleFilter").val();
+
+        $.get('@Url.Action("LoadData", "User")', { searchTerm, role, page })
+            .done(function(data) {
+                $("#userList").html(data);
+            });
+    }
+
+    // Khi gõ chữ trong input, tự động load
+    $("#searchInput").on("input", function() {
+        loadData();
+    });
+
+    // Khi đổi role
+    $("#roleFilter").change(function() {
+        loadData();
+    });
+
+    // Phân trang
+    $(document).on("click", ".pagination a.page-link", function(e) {
+        e.preventDefault();
+        const page = $(this).data("page");
+        if (page) loadData(page);
+    });
+});
+</script>

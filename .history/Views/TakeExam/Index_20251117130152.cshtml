@@ -1,0 +1,187 @@
+@model LuyenThiTracNghiem.Models.ViewModels.TakeExamViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+@section Scripts {
+<script>
+    // Khởi tạo biến JS để đồng hồ chạy
+    window.takeExamInit = {
+        timeRemaining: @Model.TimeRemainingSeconds
+    };
+</script>
+}
+
+<section class="exam-taking-area pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+            <!-- Main -->
+            <div class="col-lg-9">
+                <div class="card mb-3 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h4 class="mb-0">@Html.DisplayFor(m => m.ExamName)</h4>
+                            <small class="text-muted">Mã lượt thi: <strong>@Model.AttemptId</strong></small>
+                        </div>
+                        <div class="text-end">
+                            <div><strong>Số câu:</strong> @Model.Questions.Count</div>
+                            <div class="mt-1"><strong>Thời gian còn lại:</strong> <span id="timeDisplay">--:--</span></div>
+                        </div>
+                    </div>
+
+                    <form method="post" asp-action="Submit" asp-controller="TakeExam">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="AttemptId" value="@Model.AttemptId" />
+
+                        <div id="questionsList">
+                            @for (int i = 0; i < Model.Questions.Count; i++)
+                            {
+                                var q = Model.Questions[i];
+                                <div class="question mb-4 p-3 border rounded" id="q-@q.QuestionId" data-qid="@q.QuestionId">
+                                    <div class="mb-2">
+                                        <strong>Câu @(@i + 1):</strong>
+                                        <div class="mt-2">@Html.Raw(System.Net.WebUtility.HtmlEncode(q.QuestionText).Replace("\n","<br/>"))</div>
+                                    </div>
+
+                                    <div class="answers mt-2">
+                                        <input type="hidden" name="Answers[@i].QuestionId" value="@q.QuestionId" />
+                                        @foreach (var a in q.Answers)
+                                        {
+                                            var inputId = $"a-{q.QuestionId}-{a.AnswerId}";
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input" type="radio"
+                                                       name="Answers[@i].SelectedAnswerId"
+                                                       id="@inputId"
+                                                       value="@a.AnswerId" />
+                                                <label class="form-check-label" for="@inputId">
+                                                    @Html.Raw(System.Net.WebUtility.HtmlEncode(a.AnswerText))
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                <i class="fas fa-check-circle me-2"></i> Nộp bài
+                            </button>
+
+                            <a href="/" class="btn btn-outline-secondary btn-lg ms-auto" title="Thoát và quay lại sau">
+                                <i class="fas fa-door-open me-2"></i> Rời khỏi
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card mb-3">
+                    <div class="card-header">Trạng thái câu</div>
+                    <div class="card-body">
+                        <ul id="questionStatus" class="list-unstyled">
+                            @for (int i = 0; i < Model.Questions.Count; i++)
+                            {
+                                var q = Model.Questions[i];
+                                <li class="mb-2">
+                                    <a href="#q-@q.QuestionId" class="question-link d-flex justify-content-between">
+                                        <span>Câu @(@i + 1)</span>
+                                        <span class="badge bg-secondary status-badge">Chưa làm</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Ghi chú</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Không làm mới trang (F5) nếu chưa nộp bài.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link rel="stylesheet" href="~/assets/css/take-exam.css" asp-append-version="true" />
+
+<script>
+(function () {
+    if (!window.takeExamInit) {
+        console.error("takeExamInit not found.");
+        return;
+    }
+
+    // Đồng hồ
+    let remaining = Number(window.takeExamInit.timeRemaining) || 0;
+    const timeDisplay = document.getElementById('timeDisplay');
+
+    function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = s % 60;
+        return `${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+    }
+
+    function tick() {
+        if (remaining <= 0) {
+            timeDisplay.textContent = "00:00";
+            clearInterval(timerInterval);
+            alert("Hết giờ! Bài thi sẽ được tự động nộp. Vui lòng bấm Nộp bài ngay.");
+            return;
+        }
+        timeDisplay.textContent = formatTime(remaining);
+        remaining--;
+    }
+
+    const timerInterval = setInterval(tick, 1000);
+    tick();
+
+    // Cập nhật trạng thái sidebar
+    function updateStatusBadges() {
+        document.querySelectorAll('#questionsList .question').forEach(q => {
+            const qid = q.dataset.qid;
+            const checked = q.querySelector('input[type=radio]:checked');
+            const badge = document.querySelector(`#questionStatus li a[href="#q-${qid}"] .status-badge`);
+            if (badge) {
+                badge.textContent = checked ? 'Đã làm' : 'Chưa làm';
+                badge.className = `badge ${checked ? 'bg-success' : 'bg-secondary'} status-badge`;
+            }
+        });
+    }
+
+    // Lắng nghe radio
+    document.getElementById('questionsList').addEventListener('change', e => {
+        if (e.target.matches('input[type=radio]')) {
+            updateStatusBadges();
+        }
+    });
+
+    // Scroll sidebar
+    document.querySelectorAll('.question-link').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(a.getAttribute('href'));
+            if (!target) return;
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.classList.add('border-primary');
+            setTimeout(() => target.classList.remove('border-primary'), 1200);
+        });
+    });
+
+    updateStatusBadges();
+
+    // Cảnh báo rời trang
+    window.addEventListener('beforeunload', e => {
+        e.returnValue = 'Bạn chưa nộp bài. Rời trang sẽ làm mất tiến độ.';
+        return e.returnValue;
+    });
+
+})();
+</script>

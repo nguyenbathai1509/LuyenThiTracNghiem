@@ -1,0 +1,88 @@
+/* result.css */
+
+/* Câu hỏi */
+.list-group-item {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Hover */
+.list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Câu hỏi đúng, sai, chưa làm */
+.list-group-item.bg-success {
+    background-color: #198754 !important; /* xanh đậm */
+    color: #fff;
+}
+
+.list-group-item.bg-danger {
+    background-color: #dc3545 !important; /* đỏ đậm */
+    color: #fff;
+}
+
+.list-group-item.bg-secondary {
+    background-color: #6c757d !important; /* xám */
+    color: #fff;
+}
+
+/* Đáp án */
+.list-group-item-success {
+    background-color: #d1e7dd !important; /* nhạt xanh lá */
+    color: #0f5132;
+    font-weight: 500;
+}
+
+.list-group-item-danger {
+    background-color: #f8d7da !important; /* nhạt đỏ */
+    color: #842029;
+    font-weight: 500;
+}
+
+/* Đáp án chưa chọn */
+.list-group-item:not(.list-group-item-success):not(.list-group-item-danger) {
+    background-color: #f8f9fa;
+}
+
+/* Chọn đáp án */
+.list-group-item strong {
+    margin-right: 5px;
+}
+
+/* Câu hỏi */
+.list-group-item > div.mb-2 > strong {
+    font-size: 1.1rem;
+}
+
+/* Danh sách đáp án */
+.list-group-item ul.list-group {
+    margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .list-group-item {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .list-group-item > div.mb-2 > strong {
+        font-size: 1rem;
+    }
+}
+
+/* Nút quay về */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}

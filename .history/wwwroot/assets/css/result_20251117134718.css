@@ -1,0 +1,155 @@
+/* result.css */
+
+/* === Thông tin tổng quan (Điểm, Số câu đúng/sai/chưa làm) === */
+.exam-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.exam-summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    width: 150px;
+    height: 100px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    margin-top: 0.3rem;
+}
+
+/* Màu từng loại */
+.score-card { background-color: #007bff; }       /* xanh dương */
+.correct-card { background-color: #28a745; }     /* xanh lá */
+.incorrect-card { background-color: #dc3545; }   /* đỏ */
+.unanswered-card { background-color: #6c757d; }  /* xám */
+
+/* === Câu hỏi và đáp án === */
+
+/* Câu hỏi */
+.list-group-item {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Hover câu hỏi */
+.list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Câu hỏi đúng, sai, chưa làm */
+.list-group-item.bg-success {
+    background-color: #198754 !important; /* xanh đậm */
+    color: #fff;
+}
+
+.list-group-item.bg-danger {
+    background-color: #dc3545 !important; /* đỏ đậm */
+    color: #fff;
+}
+
+.list-group-item.bg-secondary {
+    background-color: #6c757d !important; /* xám */
+    color: #fff;
+}
+
+/* Đáp án */
+.list-group-item-success {
+    background-color: #d1e7dd !important; /* nhạt xanh lá */
+    color: #0f5132;
+    font-weight: 500;
+}
+
+.list-group-item-danger {
+    background-color: #f8d7da !important; /* nhạt đỏ */
+    color: #842029;
+    font-weight: 500;
+}
+
+/* Đáp án chưa chọn */
+.list-group-item:not(.list-group-item-success):not(.list-group-item-danger) {
+    background-color: #f8f9fa;
+}
+
+/* Chọn đáp án */
+.list-group-item strong {
+    margin-right: 5px;
+}
+
+/* Câu hỏi text */
+.list-group-item > div.mb-2 > strong {
+    font-size: 1.1rem;
+}
+
+/* Danh sách đáp án */
+.list-group-item ul.list-group {
+    margin-top: 0.5rem;
+}
+
+/* === Nút quay về Trang chủ === */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .list-group-item {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .list-group-item > div.mb-2 > strong {
+        font-size: 1rem;
+    }
+
+    .exam-summary {
+        gap: 0.7rem;
+    }
+
+    .summary-card {
+        width: 120px;
+        height: 90px;
+    }
+
+    .summary-value {
+        font-size: 1.2rem;
+    }
+}

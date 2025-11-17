@@ -3485,6 +3485,10 @@
       "PackagePath": "staticwebassets/assets/css/responsive.css"
     },
     {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/result.css",
+      "PackagePath": "staticwebassets/assets/css/result.css"
+    },
+    {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/slick.css",
       "PackagePath": "staticwebassets/assets/css/slick.css"
     },
@@ -4263,6 +4267,10 @@
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/register-validation.js",
       "PackagePath": "staticwebassets/assets/js/register-validation.js"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/result.js",
+      "PackagePath": "staticwebassets/assets/js/result.js"
     },
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/site.js",

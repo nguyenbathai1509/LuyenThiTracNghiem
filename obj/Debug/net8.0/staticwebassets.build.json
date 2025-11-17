@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ffrdbqtuv99rqwIZIorLFAKhF9z4C5Raxd+ZHljjzmw=",
+  "Hash": "Cu0/f/r+nQSh66hQ6UBA65/bmOuP/QpMRgVZaxzvVMQ=",
   "Source": "LuyenThiTracNghiem",
   "BasePath": "_content/LuyenThiTracNghiem",
   "Mode": "Default",
@@ -16585,6 +16585,25 @@
       "OriginalItemSpec": "wwwroot/assets/css/responsive.css"
     },
     {
+      "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/result.css",
+      "SourceId": "LuyenThiTracNghiem",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/",
+      "BasePath": "_content/LuyenThiTracNghiem",
+      "RelativePath": "assets/css/result.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/css/result.css"
+    },
+    {
       "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/slick.css",
       "SourceId": "LuyenThiTracNghiem",
       "SourceType": "Discovered",
@@ -20288,6 +20307,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/js/register-validation.js"
+    },
+    {
+      "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/result.js",
+      "SourceId": "LuyenThiTracNghiem",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/",
+      "BasePath": "_content/LuyenThiTracNghiem",
+      "RelativePath": "assets/js/result.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/js/result.js"
     },
     {
       "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/js/site.js",

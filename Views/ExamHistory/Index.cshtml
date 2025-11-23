@@ -1,0 +1,68 @@
+@model LuyenThiTracNghiem.Models.ViewModels.ExamHistoryViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2>Lịch sử làm bài</h2>
+            <p class="text-muted mb-0">Người dùng: @Model.UserName (ID: @Model.UserId)</p>
+        </div>
+    </div>
+
+    @if (Model.Attempts.Any())
+    {
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Đề thi</th>
+                                <th>Môn học</th>
+                                <th>Thời gian</th>
+                                <th class="text-center">Điểm</th>
+                                <th class="text-center">%</th>
+                                <th class="text-center">Thời lượng</th>
+                                <th class="text-center">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var attempt in Model.Attempts)
+                            {
+                                var statusClass = attempt.IsPassed ? "text-success" : "text-danger";
+                                var statusText = attempt.IsPassed ? "Đạt" : "Không đạt";
+                                <tr>
+                                    <td>@attempt.ExamName</td>
+                                    <td>@attempt.SubjectName</td>
+                                    <td>@attempt.AttemptTime.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-center">@((attempt.Score ?? 0).ToString("0.##"))</td>
+                                    <td class="text-center">@((attempt.PercentScore ?? 0).ToString("0.##"))%</td>
+                                    <td class="text-center">
+                                        @if (attempt.Duration.HasValue)
+                                        {
+                                            var d = attempt.Duration.Value;
+                                            @($"{(int)d.TotalMinutes}p {d.Seconds}s")
+                                        }
+                                        else
+                                        {
+                                            @("-")
+                                        }
+                                    </td>
+                                    <td class="text-center fw-semibold @statusClass">@statusText</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="bi bi-info-circle me-2"></i>Không có lượt làm bài nào.
+        </div>
+    }
+</div>

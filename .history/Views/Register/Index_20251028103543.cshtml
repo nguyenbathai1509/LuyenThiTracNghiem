@@ -1,0 +1,78 @@
+@model LuyenThiTracNghiem.Models.tblUser
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Đăng ký tài khoản</h3>
+                </div>
+                <div class="card-body">
+                    <form id="registerForm" method="post">
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label">Họ và tên</label>
+                            <input asp-for="FullName" id="FullName" class="form-control" required />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                            <div class="text-danger mt-1" id="FullNameError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BirthDate" class="form-label">Ngày sinh</label>
+                            <input asp-for="BirthDate" id="BirthDate" type="date" class="form-control" />
+                            <div class="text-danger mt-1" id="BirthDateError"></div>
+                        </div>
+
+                        <!-- Giới tính -->
+                        <div class="mb-3">
+                            <select asp-for="Gender" id="Gender" name="Gender" class="form-select">
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                            <div class="text-danger mt-1" id="GenderError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Username" class="form-label">Tên đăng nhập</label>
+                            <input asp-for="Username" id="Username" class="form-control" required />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                            <div class="text-danger mt-1" id="UsernameError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PasswordHash" class="form-label">Mật khẩu</label>
+                            <input asp-for="PasswordHash" id="PasswordHash" type="password" class="form-control" required />
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                            <div class="text-danger mt-1" id="PasswordHashError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Số điện thoại</label>
+                            <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            <div class="text-danger mt-1" id="PhoneNumberError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" id="Email" type="email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <div class="text-danger mt-1" id="EmailError"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small>Đã có tài khoản? <a class="lg" href="~/Login">Đăng nhập</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/register-validation.js"></script>

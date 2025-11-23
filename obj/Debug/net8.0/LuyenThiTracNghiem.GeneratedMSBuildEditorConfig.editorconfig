@@ -138,6 +138,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhbmdlUGFzc3dvcmQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/ExamHistory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhhbUhpc3RvcnkvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Home/ExamInfor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FeGFtSW5mb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,319 @@
+@using System.Text.Json
+@model LuyenThiTracNghiem.Areas.Admin.Models.AdminStatsViewModel
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Statistics</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Thống kê</li>
+            </ol>
+        </nav>
+    </div>
+
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-xxl-3 col-md-6 mb-3">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Người dùng</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@Model.TotalUsers</h6>
+                                <span class="text-muted small">Tổng số người dùng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-md-6 mb-3">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Môn học</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-journal-bookmark"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@Model.TotalSubjects</h6>
+                                <span class="text-muted small">Tổng số môn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-md-6 mb-3">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Đề thi</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-card-checklist"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@Model.TotalExams</h6>
+                                <span class="text-muted small">Tổng số đề</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-md-6 mb-3">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lượt hoàn thành</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@Model.TotalCompletedAttempts</h6>
+                                <span class="text-muted small">Bài thi đã nộp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Top 5 đề thi được làm nhiều nhất</h5>
+                        <div class="mb-4">
+                            <canvas id="topExamsChart" height="120"></canvas>
+                        </div>
+                        @if (Model.TopExams.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Đề thi</th>
+                                            <th>Môn học</th>
+                                            <th class="text-center">Số lượt làm</th>
+                                            <th class="text-center">Điểm TB</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var exam in Model.TopExams)
+                                        {
+                                            <tr>
+                                                <td>@exam.ExamName</td>
+                                                <td>@exam.SubjectName</td>
+                                                <td class="text-center">@exam.AttemptCount</td>
+                                                <td class="text-center">@exam.AvgScore.ToString("0.##")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted mb-0">Chưa có dữ liệu bài làm.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Top người dùng nạp tiền nhiều nhất</h5>
+                        <div class="mb-4">
+                            <canvas id="topDepositUsersChart" height="120"></canvas>
+                        </div>
+                        @if (Model.TopDepositUsers.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Người dùng</th>
+                                            <th class="text-center">Tổng tiền nạp</th>
+                                            <th class="text-center">Số lần nạp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var user in Model.TopDepositUsers)
+                                        {
+                                            <tr>
+                                                <td>@user.UserName</td>
+                                                <td class="text-center">@user.TotalAmount.ToString("N2")</td>
+                                                <td class="text-center">@user.DepositCount</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted mb-0">Chưa có dữ liệu nạp tiền.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const topExams = @Html.Raw(JsonSerializer.Serialize(Model.TopExams ?? new List<LuyenThiTracNghiem.Areas.Admin.Models.AdminTopExamStatsViewModel>()));
+        if (topExams && topExams.length > 0) {
+            const labels = topExams.map(e => e.ExamName);
+            const attemptCounts = topExams.map(e => e.AttemptCount);
+            const avgScores = topExams.map(e => e.AvgScore);
+
+            const ctx = document.getElementById('topExamsChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                type: 'bar',
+                                label: 'Số lượt làm',
+                                data: attemptCounts,
+                                backgroundColor: 'rgba(13, 110, 253, 0.6)',
+                                borderColor: 'rgba(13, 110, 253, 1)',
+                                borderWidth: 1,
+                                yAxisID: 'y'
+                            },
+                            {
+                                type: 'line',
+                                label: 'Điểm TB',
+                                data: avgScores,
+                                borderColor: 'rgba(253, 126, 20, 1)',
+                                backgroundColor: 'rgba(253, 126, 20, 0.2)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Số lượt làm'
+                                }
+                            },
+                            y1: {
+                                position: 'right',
+                                beginAtZero: true,
+                                grid: {
+                                    drawOnChartArea: false
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Điểm TB'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        const topDeposits = @Html.Raw(JsonSerializer.Serialize(Model.TopDepositUsers ?? new List<LuyenThiTracNghiem.Areas.Admin.Models.AdminTopUserDepositViewModel>()));
+        if (topDeposits && topDeposits.length > 0) {
+            const depositLabels = topDeposits.map(u => u.UserName);
+            const totalAmounts = topDeposits.map(u => u.TotalAmount);
+            const depositCounts = topDeposits.map(u => u.DepositCount);
+
+            const depositCtx = document.getElementById('topDepositUsersChart');
+            if (depositCtx) {
+                new Chart(depositCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: depositLabels,
+                        datasets: [
+                            {
+                                type: 'bar',
+                                label: 'Tổng tiền nạp',
+                                data: totalAmounts,
+                                backgroundColor: 'rgba(25, 135, 84, 0.6)',
+                                borderColor: 'rgba(25, 135, 84, 1)',
+                                borderWidth: 1,
+                                yAxisID: 'y'
+                            },
+                            {
+                                type: 'line',
+                                label: 'Số lần nạp',
+                                data: depositCounts,
+                                borderColor: 'rgba(255, 193, 7, 1)',
+                                backgroundColor: 'rgba(255, 193, 7, 0.25)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Tổng tiền nạp (VNĐ)'
+                                }
+                            },
+                            y1: {
+                                position: 'right',
+                                beginAtZero: true,
+                                grid: {
+                                    drawOnChartArea: false
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Số lần nạp'
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.dataset.label || '';
+                                        return `${label}: ${context.parsed.y}`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using LuyenThiTracNghiem.Areas.Admin.Models;
 
@@ -14,6 +15,13 @@ namespace LuyenThiTracNghiem.Models.ViewModels
         public int TotalCorrect { get; set; }
         public int TotalWrong { get; set; }
         public int TotalUnanswered { get; set; }
+        public int TotalDeposits { get; set; }
+        public int SuccessfulDeposits { get; set; }
+        public int PendingDeposits { get; set; }
+        public int FailedDeposits { get; set; }
+        public decimal TotalDepositAmount { get; set; }
+        public DateTime? LastDepositDate { get; set; }
+        public decimal? LastDepositAmount { get; set; }
         public List<UserSubjectStatsViewModel> SubjectStats { get; set; } = new();
         public List<UserDifficultyStatsViewModel> DifficultyStats { get; set; } = new();
     }

@@ -75,66 +75,6 @@
 
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-light">
-            <h5 class="mb-0">Giao dịch nạp tiền</h5>
-        </div>
-        <div class="card-body">
-            @if (Model.TotalDeposits > 0)
-            {
-                <div class="row g-3">
-                    <div class="col-md-3 col-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <h6 class="text-muted">Tổng giao dịch</h6>
-                                <h4 class="mb-0">@Model.TotalDeposits</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <h6 class="text-muted">Giao dịch thành công</h6>
-                                <h4 class="mb-0 text-success">@Model.SuccessfulDeposits</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <h6 class="text-muted">Đang xử lý</h6>
-                                <h4 class="mb-0 text-warning">@Model.PendingDeposits</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <h6 class="text-muted">Thất bại</h6>
-                                <h4 class="mb-0 text-danger">@Model.FailedDeposits</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body text-center">
-                                <h6 class="text-muted">Tổng tiền nạp thành công</h6>
-                                <h4 class="mb-0">@Model.TotalDepositAmount.ToString("N0") đ</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-muted mt-3 mb-0">
-                    Lần nạp gần nhất: @Model.LastDepositDate?.ToString("dd/MM/yyyy HH:mm") với số tiền @Model.LastDepositAmount?.ToString("N0") đ
-                </p>
-            }
-            else
-            {
-                <p class="mb-0 text-muted">Chưa có giao dịch nạp tiền.</p>
-            }
-        </div>
-    </div>
-
-    <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
             <h5 class="mb-0">Thống kê theo môn</h5>
         </div>
         <div class="card-body">

@@ -37,7 +37,7 @@ namespace LuyenThiTracNghiem.Controllers
             var totalUnanswered = attempts.Sum(a => a.UnansweredCount ?? 0);
 
             var payments = _context.Payments
-                .Where(p => p.UserId == id)
+                .Where(p => p.UserId == id && p.PaymentStatus == "Success")
                 .OrderByDescending(p => p.PaymentDate)
                 .ToList();
 
@@ -47,7 +47,7 @@ namespace LuyenThiTracNghiem.Controllers
             var pendingDeposits = payments.Count(p => p.PaymentStatus == "Pending");
             var failedDeposits = payments.Count(p => p.PaymentStatus == "Failed");
             var totalDepositAmount = successfulPayments.Sum(p => p.Amount);
-            var lastDeposit = payments.FirstOrDefault(p => p.PaymentStatus == "Success");
+            var lastDeposit = payments.FirstOrDefault();
 
             var subjectStats = attempts
                 .Where(a => a.Exam != null && a.Exam.Subject != null)

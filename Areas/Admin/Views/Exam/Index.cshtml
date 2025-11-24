@@ -8,9 +8,9 @@
 
 <main id="main">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Exam Management</h2>
+        <h2>Exam management</h2>
         <a class="btn btn-primary mb-2" asp-area="Admin" asp-controller="Exam" asp-action="Create">
-            <i class="fas fa-plus me-2"></i>Add Exam
+            <i class="fas fa-plus me-2"></i>Add exam
         </a>
     </div>
 
@@ -29,7 +29,7 @@
                 <!-- Dropdown Subject -->
                 <div class="col-md-3">
                     <select id="subjectFilter" class="form-select">
-                        <option value="">-- All Subjects --</option>
+                        <option value="">-- All subjects --</option>
                         @foreach (var subject in (ViewBag.Subjects as List<LuyenThiTracNghiem.Areas.Admin.Models.tblSubject>) ?? new List<LuyenThiTracNghiem.Areas.Admin.Models.tblSubject>())
                         {
                             <option value="@subject.SubjectId">@subject.SubjectName</option>
@@ -40,7 +40,7 @@
                 <!-- Dropdown ExamType -->
                 <div class="col-md-3">
                     <select id="examTypeFilter" class="form-select">
-                        <option value="">-- All Types --</option>
+                        <option value="">-- All types --</option>
                         <option value="Thử nghiệm">Thử nghiệm</option>
                         <option value="Chính thức">Chính thức</option>
                     </select>

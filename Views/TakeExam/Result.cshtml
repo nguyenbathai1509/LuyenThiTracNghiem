@@ -1,47 +1,69 @@
 @model LuyenThiTracNghiem.Models.ViewModels.ExamResultViewModel
 
-<h2 class="text-center mb-4" style="margin-top: 30px;">@Model.ExamName</h2>
-
-<div class="mb-4 d-flex flex-column align-items-center">
-    <p><strong>Điểm:</strong> @Model.Score.ToString("0.00")</p>
-    <p><strong>Số câu đúng:</strong> @Model.CorrectCount</p>
-    <p><strong>Số câu sai:</strong> @Model.IncorrectCount</p>
-    <p><strong>Số câu chưa làm:</strong> @Model.UnansweredCount</p>
-</div>
-
-<hr />
-
-<div class="list-group">
-    @foreach (var q in Model.Questions)
-    {
-        <div class="list-group-item mb-2">
-            <div class="mb-2">
-                <strong>Câu @q.QuestionId:</strong> @q.QuestionText
-            </div>
-            <ul class="list-group">
-                @foreach (var a in q.Answers)
-                {
-                    var selected = q.UserAnswerId.HasValue && q.UserAnswerId.Value == a.AnswerId;
-                    var correct = a.AnswerId == q.CorrectAnswerId;
-
-                    string itemClass = "";
-                    if (correct) itemClass = "list-group-item-success";
-                    else if (selected && !correct) itemClass = "list-group-item-danger";
-
-                    <li class="list-group-item @itemClass">
-                        @if (selected) { <strong>(Chọn)</strong> } @a.AnswerText
-                        @if (correct) { <strong> - Đáp án đúng</strong> }
-                    </li>
-                }
-            </ul>
-        </div>
-    }
-</div>
-
-
-<div class="text-center mt-3" style="margin-bottom: 10px;">
-    <a href="@Url.Action("Index","Home")" class="btn btn-primary">Quay lại Trang chủ</a>
-</div>
-
 <link rel="stylesheet" href="~/assets/css/result.css" asp-append-version="true" />
+
+<div class="result-hero">
+    <div class="result-shell">
+        <div class="result-header d-flex justify-content-between align-items-center">
+            <h2>@Model.ExamName</h2>
+            <div class="badge bg-white text-primary fw-bold px-3 py-2 rounded-pill">Kết quả</div>
+        </div>
+
+        <div class="result-meta">
+            <div class="meta-card">
+                <div class="label">Điểm</div>
+                <div class="value">@Model.Score.ToString("0.00")</div>
+            </div>
+            <div class="meta-card">
+                <div class="label">Câu đúng</div>
+                <div class="value text-success">@Model.CorrectCount</div>
+            </div>
+            <div class="meta-card">
+                <div class="label">Câu sai</div>
+                <div class="value text-danger">@Model.IncorrectCount</div>
+            </div>
+            <div class="meta-card">
+                <div class="label">Chưa làm</div>
+                <div class="value text-warning">@Model.UnansweredCount</div>
+            </div>
+        </div>
+
+        <div class="result-body">
+            @foreach (var q in Model.Questions)
+            {
+                <div class="question-card">
+                    <div class="q-title">Câu @q.QuestionId: @q.QuestionText</div>
+                    <ul class="answer-list">
+                        @foreach (var a in q.Answers)
+                        {
+                            var selected = q.UserAnswerId.HasValue && q.UserAnswerId.Value == a.AnswerId;
+                            var correct = a.AnswerId == q.CorrectAnswerId;
+
+                            string classes = "answer-item";
+                            if (correct) classes += " correct";
+                            if (selected) classes += " selected";
+
+                            <li class="@classes">
+                                @if (selected)
+                                {
+                                    <strong>(Chọn)</strong>
+                                }
+                                @a.AnswerText
+                                @if (correct)
+                                {
+                                    <strong> - Đáp án đúng</strong>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+
+        <div class="result-actions">
+            <a href="@Url.Action("Index","Home")" class="btn btn-primary btn-home">Quay lại Trang chủ</a>
+        </div>
+    </div>
+</div>
+
 <script src="~/assets/js/result.js" asp-append-version="true"></script>

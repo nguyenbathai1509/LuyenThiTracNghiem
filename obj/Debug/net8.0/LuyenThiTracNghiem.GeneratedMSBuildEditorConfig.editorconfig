@@ -158,6 +158,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Payment/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9IaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Payment/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9pbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -176,6 +180,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Register/RegisterSuccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVnaXN0ZXIvUmVnaXN0ZXJTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/Balance/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvQmFsYW5jZS9EZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/Views/Shared/Components/NewExam/Default.cshtml]

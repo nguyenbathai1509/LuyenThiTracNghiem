@@ -41,8 +41,14 @@
                                 <!-- Left: thời tiết và ngày -->
                                 <div class="header-info-left d-none d-md-flex">
                                     <ul class="mb-0">
-                                        <li><img src="~/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny</li>
-                                        <li><img src="~/assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                        @if (HttpContextAccessor.HttpContext?.Session.GetString("FullName") != null){
+                                            <li><img src="~/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny</li>
+                                            <li><img src="~/assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                            @await Component.InvokeAsync("Balance")
+                                        }else{
+                                            <li><img src="~/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny</li>
+                                            <li><img src="~/assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                        }
                                     </ul>
                                 </div>
 
@@ -80,6 +86,12 @@
                                                     style="transition: all 0.2s ease; border-radius: 6px;">
                                                         <i class="fa fa-history text-info"></i>
                                                         <span>Lịch sử thi</span>
+                                                        <small class="text-muted ms-auto">›</small>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center text-dark py-2 px-3" href="/Payment/History"
+                                                    style="transition: all 0.2s ease; border-radius: 6px;">
+                                                        <i class="fa fa-history text-info"></i>
+                                                        <span>Lịch sử giao dịch</span>
                                                         <small class="text-muted ms-auto">›</small>
                                                     </a>
                                                     <a class="dropdown-item d-flex align-items-center text-dark py-2 px-3" href="/UserStats"

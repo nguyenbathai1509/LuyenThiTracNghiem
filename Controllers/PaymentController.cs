@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using VNPAY.NET;
 using VNPAY.NET.Models;
@@ -32,6 +33,23 @@ namespace LuyenThiTracNghiem.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet("Payment/History")]
+        public IActionResult History()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var payments = _context.Payments
+                .Where(p => p.UserId == userId)
+                .OrderByDescending(p => p.PaymentDate)
+                .ToList();
+
+            return View(payments);
         }
 
         [HttpGet("Payment/CreatePaymentUrl")]

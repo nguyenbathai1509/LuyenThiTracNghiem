@@ -1,27 +1,98 @@
 @using LuyenThiTracNghiem.Utilities
 @model IEnumerable<dynamic>
 
+<style>
+    .weekly-slider {
+        width: 100%;
+    }
+    .weekly-slider .slick-list {
+        margin: 0 -10px;
+    }
+    .weekly-slider .slick-slide {
+        padding: 0 10px;
+    }
+</style>
+
 <div class="row">
     <div class="col-12">
-        <div class="weekly-news-active dot-style d-flex">
-            @foreach (var exam in Model)
-            {
-                string url = Functions.TitleSlugGeneration("exam", exam.ExamName, exam.ExamId);
-                <div class="weekly-single exam-card">
-                    <div class="weekly-img">
-                        <img src="@(exam.Image ?? "/images/default-exam.png")" 
-                            alt="@exam.ExamName" 
-                            loading="lazy" 
-                            onerror="this.onerror=null;this.src='/images/default-exam.png';" />
+        @if (Model.Any())
+        {
+            <div class="weekly-news-active dot-style weekly-slider">
+                @foreach (var exam in Model)
+                {
+                    string url = Functions.TitleSlugGeneration("exam", exam.ExamName, exam.ExamId);
+                    <div class="weekly-single exam-card">
+                        <div class="weekly-img">
+                            <img src="@(exam.Image ?? "/images/default-exam.png")" 
+                                alt="@exam.ExamName" 
+                                loading="lazy" 
+                                onerror="this.onerror=null;this.src='/images/default-exam.png';" />
+                        </div>
+                        <div class="weekly-caption">
+                            <span class="color1">@exam.SubjectId</span>
+                            <h4>
+                                <a href="/@url">@exam.ExamName</a>
+                            </h4>
+                        </div>
                     </div>
-                    <div class="weekly-caption">
-                        <span class="color1">@exam.SubjectId</span>
-                        <h4>
-                            <a href="/@url">@exam.ExamName</a>
-                        </h4>
-                    </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-muted mb-0">Chưa có đề thi nổi bật tuần này.</p>
+        }
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var slider = $('.weekly-news-active');
+        if (!slider.length) return;
+
+        var itemCount = slider.find('.weekly-single').length;
+        if (itemCount === 0) return;
+
+        if (slider.hasClass('slick-initialized')) {
+            slider.slick('unslick');
+        }
+
+        var desktopShow = Math.min(3, itemCount);
+
+        slider.slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            arrows: false,
+            slidesToShow: desktopShow,
+            slidesToScroll: 1,
+            autoplay: true,
+            initialSlide: 0,
+            loop: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: desktopShow,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>

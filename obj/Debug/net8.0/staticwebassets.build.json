@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Cu0/f/r+nQSh66hQ6UBA65/bmOuP/QpMRgVZaxzvVMQ=",
+  "Hash": "M/EvSIMULhQVskTa6ImVGhlo84ESo5NyCvUyb6y5D0M=",
   "Source": "LuyenThiTracNghiem",
   "BasePath": "_content/LuyenThiTracNghiem",
   "Mode": "Default",
@@ -16393,6 +16393,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/css/gijgo.css"
+    },
+    {
+      "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/login.css",
+      "SourceId": "LuyenThiTracNghiem",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/",
+      "BasePath": "_content/LuyenThiTracNghiem",
+      "RelativePath": "assets/css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/css/login.css"
     },
     {
       "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/magnific-popup.css",

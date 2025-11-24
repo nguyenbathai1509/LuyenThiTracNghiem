@@ -30,7 +30,7 @@
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay:true,
-        initialSlide: 3,
+        initialSlide: 0,
         loop:true,
         responsive: [
           {

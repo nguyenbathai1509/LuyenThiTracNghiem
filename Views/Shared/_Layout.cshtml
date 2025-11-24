@@ -25,7 +25,6 @@
         <link rel="stylesheet" href="~/assets/css/slick.css">
         <link rel="stylesheet" href="~/assets/css/nice-select.css">
         <link rel="stylesheet" href="~/assets/css/style.css">
-        <link rel="stylesheet" href="~/assets/css/register-user.css" />
         <link rel="stylesheet" href="~/assets/css/main-user.css" />
     </head>
 
@@ -149,15 +148,19 @@
                                             <ul id="navigation">
                                                 <li><a href="~/">Home</a></li>
                                                 <li><a href="/Exam">Exams</a></li>
-                                                <li><a href="~/About">About</a></li>
-                                                <li><a href="~/News">Latest News</a></li>
-                                                <li><a href="~/Contact">Contact</a></li>
+                                                <li><a href="#">community</a></li>
+                                                <li><a href="#">Support</a></li>
+                                                <li><a href="#">Contact</a></li>
                                                 <li class="d-md-none">
                                                     @if (HttpContextAccessor.HttpContext?.Session.GetString("FullName") != null)
                                                     {
                                                         <a href="#">@HttpContextAccessor.HttpContext.Session.GetString("FullName")</a>
                                                         <ul class="submenu">
                                                             <li><a href="/Profile">Thông tin cá nhân</a></li>
+                                                            <li><a href="/ExamHistory">Lịch sử thi</a></li>
+                                                            <li><a href="/Payment/History">Lịch sử giao dịch</a></li>
+                                                            <li><a href="/UserStats">Thống kê</a></li>
+                                                            <li><a href="/Payment">Nạp tiền vào tài khoản</a></li>
                                                             <li><a href="/ChangePassword">Đổi mật khẩu</a></li>
                                                             <li><a href="/Login/Logout">Đăng xuất</a></li>
                                                         </ul>

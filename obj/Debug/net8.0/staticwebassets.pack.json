@@ -3445,6 +3445,10 @@
       "PackagePath": "staticwebassets/assets/css/gijgo.css"
     },
     {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/login.css",
+      "PackagePath": "staticwebassets/assets/css/login.css"
+    },
+    {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/magnific-popup.css",
       "PackagePath": "staticwebassets/assets/css/magnific-popup.css"
     },

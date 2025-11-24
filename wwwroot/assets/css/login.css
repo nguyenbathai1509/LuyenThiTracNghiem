@@ -6,15 +6,15 @@
     --border: #e2e8f0;
     --bg: #f8fafc;
 }
-.auth-hero {
+.login-hero {
     min-height: 82vh;
     display: grid;
     place-items: center;
     background: radial-gradient(circle at 10% 20%, #e0f2fe 0%, #eef2ff 30%, #f8fafc 65%);
     padding: 32px 12px;
 }
-.auth-shell {
-    max-width: 1000px;
+.login-shell {
+    max-width: 980px;
     width: 100%;
     background: var(--surface);
     border-radius: 22px;
@@ -22,13 +22,13 @@
     box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
     overflow: hidden;
 }
-.auth-visual {
-    background: linear-gradient(160deg, rgba(16, 185, 129, 0.95), rgba(52, 211, 153, 0.9));
+.login-visual {
+    background: linear-gradient(160deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.9));
     color: #fff;
     padding: 36px;
     height: 100%;
 }
-.auth-visual .badge-pill {
+.login-visual .badge-pill {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -37,23 +37,23 @@
     background: rgba(255, 255, 255, 0.15);
     font-weight: 700;
 }
-.auth-visual h2 {
+.login-visual h2 {
     font-weight: 800;
     letter-spacing: -0.02em;
     margin: 14px 0 10px;
 }
-.auth-visual p {
+.login-visual p {
     opacity: 0.92;
     font-size: 15px;
 }
-.auth-visual .bullet {
+.login-visual .bullet {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 10px;
     opacity: 0.94;
 }
-.auth-body {
+.login-body {
     padding: 34px 32px;
 }
 .input-stack label {
@@ -79,19 +79,17 @@
     font-size: 18px;
     margin-right: 10px;
 }
-.input-box input,
-.input-box select {
+.input-box input {
     border: none;
     background: transparent;
     flex: 1;
     padding: 6px 4px;
 }
-.input-box input:focus,
-.input-box select:focus {
+.input-box input:focus {
     outline: none;
     background: transparent;
 }
-.auth-btn {
+.login-btn {
     border: none;
     width: 100%;
     border-radius: 14px;
@@ -102,23 +100,23 @@
     color: #fff;
     box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
 }
-.auth-btn:hover {
+.login-btn:hover {
     background: linear-gradient(120deg, var(--primary-2), var(--primary));
     color: #fff;
 }
-.auth-footer {
+.login-footer {
     margin-top: 18px;
     text-align: center;
     color: var(--muted);
 }
-.auth-footer a {
+.login-footer a {
     font-weight: 700;
 }
 @media (max-width: 991px) {
-    .auth-shell {
-        max-width: 540px;
+    .login-shell {
+        max-width: 520px;
     }
-    .auth-visual {
+    .login-visual {
         display: none;
     }
 }

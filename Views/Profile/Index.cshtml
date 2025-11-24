@@ -3,9 +3,19 @@
     Layout = "_Layout";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-7">
+<div class="profile-hero">
+    <div class="profile-shell">
+        <div class="profile-header d-flex justify-content-between align-items-center">
+            <div>
+                <div class="badge-outline mb-2">
+                    <i class="far fa-id-badge"></i> Hồ sơ của bạn
+                </div>
+                <h3 class="mb-0 fw-bold">Thông tin cá nhân</h3>
+                <div class="text-white-50 small">Quản lý và cập nhật hồ sơ người dùng</div>
+            </div>
+            <i class="fas fa-user-circle fa-3x text-white-50 d-none d-md-block"></i>
+        </div>
+        <div class="profile-body">
             @if (TempData["SuccessMessage"] != null)
             {
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -13,65 +23,89 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }
-            <div class="card shadow-sm">
-                <div class="card-header text-center bg-info text-white">
-                    <h3>Thông tin cá nhân</h3>
-                </div>
-                <div class="card-body">
-                    <form id="profileForm" method="post">
-                        <input type="hidden" asp-for="Username" class="form-control" value="@Model.FullName" />
-                        @Html.AntiForgeryToken()
+            <form id="profileForm" method="post">
+                <input type="hidden" asp-for="Username" class="form-control" value="@Model.FullName" />
+                @Html.AntiForgeryToken()
 
-                        <div class="mb-3">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="input-stack">
                             <label asp-for="FullName" class="form-label">Họ và tên</label>
-                            <input asp-for="FullName" id="FullName" class="form-control" value="@Model.FullName" disabled />
+                            <div class="input-box">
+                                <span class="icon"><i class="far fa-user"></i></span>
+                                <input asp-for="FullName" id="FullName" class="form-control" value="@Model.FullName" disabled />
+                            </div>
                             <div class="text-danger mt-1" id="FullNameError"></div>
                         </div>
-
-                        <div class="mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-stack">
                             <label asp-for="BirthDate" class="form-label">Ngày sinh</label>
-                            <input asp-for="BirthDate" id="BirthDate" type="date" class="form-control" 
-                                   value="@(Model.BirthDate?.ToString("yyyy-MM-dd"))" disabled />
+                            <div class="input-box">
+                                <span class="icon"><i class="far fa-calendar-alt"></i></span>
+                                <input asp-for="BirthDate" id="BirthDate" type="date" class="form-control"
+                                       value="@(Model.BirthDate?.ToString("yyyy-MM-dd"))" disabled />
+                            </div>
                             <div class="text-danger mt-1" id="BirthDateError"></div>
                         </div>
-
-                        <div class="mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-stack">
                             <label asp-for="Username" class="form-label">Tên đăng nhập</label>
-                            <input asp-for="Username" id="Username" class="form-control" 
-                                   value="@Model.Username" disabled />
+                            <div class="input-box">
+                                <span class="icon"><i class="far fa-user-circle"></i></span>
+                                <input asp-for="Username" id="Username" class="form-control"
+                                       value="@Model.Username" disabled />
+                            </div>
                         </div>
-
-                        <div class="mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-stack">
                             <label asp-for="PhoneNumber" class="form-label">Số điện thoại</label>
-                            <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control" 
-                                   value="@Model.PhoneNumber" disabled />
+                            <div class="input-box">
+                                <span class="icon"><i class="fas fa-phone"></i></span>
+                                <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control"
+                                       value="@Model.PhoneNumber" disabled />
+                            </div>
                             <div class="text-danger mt-1" id="PhoneNumberError"></div>
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
-
-                        <div class="mb-3">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-stack">
                             <label asp-for="Email" class="form-label">Email</label>
-                            <input asp-for="Email" id="Email" type="email" class="form-control" 
-                                   value="@Model.Email" disabled />
+                            <div class="input-box">
+                                <span class="icon"><i class="far fa-envelope"></i></span>
+                                <input asp-for="Email" id="Email" type="email" class="form-control"
+                                       value="@Model.Email" disabled />
+                            </div>
                             <div class="text-danger mt-1" id="EmailError"></div>
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button type="button" id="editBtn" class="btn btn-warning">Chỉnh sửa</button>
-                            <button type="button" id="deleteBtn" class="btn btn-danger" data-userid="@Model.UserId">Xóa tài khoản</button>
-
-                            <div>
-                                <button type="submit" id="saveBtn" class="btn btn-success d-none">Lưu thay đổi</button>
-                                <button type="button" id="cancelBtn" class="btn btn-secondary d-none">Hủy</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+
+                <div class="d-flex profile-actions mt-4 flex-wrap">
+                    <button type="button" id="editBtn" class="btn btn-warning btn-rounded text-white">
+                        <i class="fas fa-edit me-1"></i> Chỉnh sửa
+                    </button>
+                    <button type="button" id="deleteBtn" class="btn btn-danger btn-rounded" data-userid="@Model.UserId">
+                        <i class="fas fa-trash-alt me-1"></i> Xóa tài khoản
+                    </button>
+                    <div class="ms-auto d-flex gap-2">
+                        <button type="submit" id="saveBtn" class="btn btn-success btn-rounded d-none">
+                            <i class="fas fa-save me-1"></i> Lưu thay đổi
+                        </button>
+                        <button type="button" id="cancelBtn" class="btn btn-secondary btn-rounded d-none">
+                            <i class="fas fa-times me-1"></i> Hủy
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+<link rel="stylesheet" href="~/assets/css/profile.css" asp-append-version="true" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="~/assets/js/profile.js" defer></script>

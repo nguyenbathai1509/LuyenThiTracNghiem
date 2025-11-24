@@ -3433,6 +3433,14 @@
       "PackagePath": "staticwebassets/assets/css/bootstrap.min.css"
     },
     {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/change-password.css",
+      "PackagePath": "staticwebassets/assets/css/change-password.css"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/exam-history.css",
+      "PackagePath": "staticwebassets/assets/css/exam-history.css"
+    },
+    {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/flaticon.css",
       "PackagePath": "staticwebassets/assets/css/flaticon.css"
     },
@@ -3473,12 +3481,20 @@
       "PackagePath": "staticwebassets/assets/css/owl.carousel.min.css"
     },
     {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/payment-history.css",
+      "PackagePath": "staticwebassets/assets/css/payment-history.css"
+    },
+    {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/payment-index.css",
       "PackagePath": "staticwebassets/assets/css/payment-index.css"
     },
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/payment-result.css",
       "PackagePath": "staticwebassets/assets/css/payment-result.css"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/profile.css",
+      "PackagePath": "staticwebassets/assets/css/profile.css"
     },
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/register-user.css",
@@ -3519,6 +3535,10 @@
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/ticker-style.css",
       "PackagePath": "staticwebassets/assets/css/ticker-style.css"
+    },
+    {
+      "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/css/user-stats.css",
+      "PackagePath": "staticwebassets/assets/css/user-stats.css"
     },
     {
       "Id": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/assets/fonts/Flaticon.eot",

@@ -21,7 +21,7 @@
                         </div>
                     </div>
 
-                    <form method="post" asp-action="Submit" asp-controller="TakeExam">
+                    <form id="takeExamForm" method="post" asp-action="Submit" asp-controller="TakeExam">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="AttemptId" value="@Model.AttemptId" />
 

@@ -1,16 +1,18 @@
 using System.ComponentModel.Design;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using CsvHelper;
 using LuyenThiTracNghiem.Areas.Admin.Models;
 using LuyenThiTracNghiem.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
-using CsvHelper;
-using System.Globalization;
 using LuyenThiTracNghiem.Filters;
 
 namespace LuyenThiTracNghiem.Areas.Admin.Controllers
@@ -147,6 +149,184 @@ namespace LuyenThiTracNghiem.Areas.Admin.Controllers
 
             TempData["SuccessMessage"] = "Thêm câu hỏi thành công!";
             return RedirectToAction("Create");
+        }
+
+        [HttpGet]
+        public IActionResult UploadQuestions()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UploadQuestions(IFormFile? file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                TempData["ErrorMessage"] = "Vui lòng chọn file CSV/XLSX để tải lên.";
+                return View();
+            }
+
+            var ext = System.IO.Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (ext != ".csv" && ext != ".xlsx")
+            {
+                TempData["ErrorMessage"] = "Chỉ hỗ trợ file .csv hoặc .xlsx.";
+                return View();
+            }
+
+            int created = 0;
+            int skipped = 0;
+
+            if (ext == ".csv")
+            {
+                using var reader = new StreamReader(file.OpenReadStream());
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+                var rows = csv.GetRecords<ImportQuestionRow>().ToList();
+                ImportRows(rows, ref created, ref skipped);
+            }
+            else if (ext == ".xlsx")
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using var package = new ExcelPackage(file.OpenReadStream());
+                var ws = package.Workbook.Worksheets.FirstOrDefault();
+                if (ws != null)
+                {
+                    var rows = new List<ImportQuestionRow>();
+                    var startRow = 2; // row 1 header
+                    var lastRow = ws.Dimension?.End.Row ?? 0;
+                    for (int r = startRow; r <= lastRow; r++)
+                    {
+                        rows.Add(new ImportQuestionRow
+                        {
+                            SubjectId = ws.Cells[r, 1].Text?.Trim(),
+                            QuestionText = ws.Cells[r, 2].Text?.Trim(),
+                            Level = ws.Cells[r, 3].Text?.Trim(),
+                            Answer1 = ws.Cells[r, 4].Text?.Trim(),
+                            Answer2 = ws.Cells[r, 5].Text?.Trim(),
+                            Answer3 = ws.Cells[r, 6].Text?.Trim(),
+                            Answer4 = ws.Cells[r, 7].Text?.Trim(),
+                            Correct = ws.Cells[r, 8].Text?.Trim()
+                        });
+                    }
+                    ImportRows(rows, ref created, ref skipped);
+                }
+            }
+
+            TempData["SuccessMessage"] = $"Đã import {created} câu hỏi. Bỏ qua {skipped} dòng không hợp lệ hoặc trùng.";
+            return View();
+        }
+
+        private void ImportRows(IEnumerable<ImportQuestionRow> rows, ref int created, ref int skipped)
+        {
+            foreach (var row in rows)
+            {
+                if (row == null) { skipped++; continue; }
+                if (string.IsNullOrWhiteSpace(row.SubjectId) || string.IsNullOrWhiteSpace(row.QuestionText))
+                {
+                    skipped++; continue;
+                }
+
+                var subjectId = row.SubjectId.Trim();
+                var subjectExists = _context.Subjects.Any(s => s.SubjectId == subjectId);
+                if (!subjectExists)
+                {
+                    skipped++; continue;
+                }
+
+                if (!Enum.TryParse<QuestionLevel>(row.Level, out var level))
+                {
+                    // allow numeric level
+                    if (byte.TryParse(row.Level, out var levelNum) && Enum.IsDefined(typeof(QuestionLevel), (QuestionLevel)levelNum))
+                    {
+                        level = (QuestionLevel)levelNum;
+                    }
+                    else
+                    {
+                        skipped++; continue;
+                    }
+                }
+
+                var answers = new[] { row.Answer1, row.Answer2, row.Answer3, row.Answer4 }
+                    .Where(a => !string.IsNullOrWhiteSpace(a))
+                    .ToList();
+                if (!answers.Any())
+                {
+                    skipped++; continue;
+                }
+
+                int correctIndex = ParseCorrectIndex(row.Correct);
+                if (correctIndex < 0 || correctIndex >= answers.Count)
+                {
+                    skipped++; continue;
+                }
+
+                // tránh trùng câu hỏi trong cùng môn
+                bool exists = _context.Questions.Any(q => q.QuestionText == row.QuestionText && q.SubjectId == subjectId);
+                if (exists)
+                {
+                    skipped++; continue;
+                }
+
+                var question = new tblQuestion
+                {
+                    SubjectId = subjectId,
+                    QuestionText = row.QuestionText,
+                    Level = level,
+                    Status = true,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Admin import"
+                };
+                _context.Questions.Add(question);
+                _context.SaveChanges();
+
+                for (int i = 0; i < answers.Count; i++)
+                {
+                    var answer = new tblAnswer
+                    {
+                        QuestionId = question.QuestionId,
+                        AnswerText = answers[i]!,
+                        IsCorrect = (i == correctIndex),
+                        Status = true,
+                        CreatedAt = DateTime.Now,
+                        CreatedBy = "Admin import"
+                    };
+                    _context.Answers.Add(answer);
+                }
+                _context.SaveChanges();
+                created++;
+            }
+        }
+
+        private int ParseCorrectIndex(string? correct)
+        {
+            if (string.IsNullOrWhiteSpace(correct)) return -1;
+            correct = correct.Trim();
+            // Accept 0-based, 1-based, or A/B/C/D
+            if (int.TryParse(correct, out var num))
+            {
+                return num > 0 ? num - 1 : num;
+            }
+            var upper = correct.ToUpperInvariant();
+            return upper switch
+            {
+                "A" => 0,
+                "B" => 1,
+                "C" => 2,
+                "D" => 3,
+                _ => -1
+            };
+        }
+
+        private class ImportQuestionRow
+        {
+            public string? SubjectId { get; set; }
+            public string? QuestionText { get; set; }
+            public string? Level { get; set; }
+            public string? Answer1 { get; set; }
+            public string? Answer2 { get; set; }
+            public string? Answer3 { get; set; }
+            public string? Answer4 { get; set; }
+            public string? Correct { get; set; }
         }
 
         public async Task<IActionResult> Edit(int? questionId)

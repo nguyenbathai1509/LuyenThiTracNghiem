@@ -1,0 +1,44 @@
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Upload Questions";
+}
+test.csv
+<main id="main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Upload câu hỏi</h2>
+        <a asp-area="Admin" asp-controller="QuestionAndAnswer" asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Quay lại danh sách
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <p class="text-muted mb-3">Chọn file .csv hoặc .xlsx chứa nội dung câu hỏi để tải lên hệ thống.</p>
+            <form asp-action="UploadQuestions" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label class="form-label">Chọn file</label>
+                    <input type="file" name="file" class="form-control" accept=".csv,.xlsx" required />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-cloud-upload-alt me-1"></i> Upload
+                </button>
+            </form>
+        </div>
+    </div>
+</main>

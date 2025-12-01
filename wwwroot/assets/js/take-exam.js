@@ -7,7 +7,9 @@
 
     // Đồng hồ đếm ngược
     let remaining = Number(window.takeExamInit.timeRemaining) || 0;
+    let submitted = false;
     const timeDisplay = document.getElementById('timeDisplay');
+    const form = document.getElementById('takeExamForm');
 
     function formatTime(seconds) {
         const m = Math.floor(seconds / 60);
@@ -19,11 +21,22 @@
         if (remaining <= 0) {
             timeDisplay.textContent = "00:00";
             clearInterval(timerInterval);
-            alert("Hết giờ! Bài thi sẽ được tự động nộp. Vui lòng bấm Nộp bài ngay.");
+            autoSubmit();
             return;
         }
         timeDisplay.textContent = formatTime(remaining);
         remaining--;
+    }
+
+    function autoSubmit() {
+        if (submitted || !form) return;
+        submitted = true;
+        window.removeEventListener('beforeunload', beforeUnloadHandler);
+        const alertBox = document.createElement('div');
+        alertBox.className = 'alert alert-warning mb-2';
+        alertBox.textContent = 'Hết giờ! Bài thi đang được nộp tự động...';
+        form.prepend(alertBox);
+        form.submit();
     }
 
     const timerInterval = setInterval(tick, 1000);
@@ -65,10 +78,18 @@
     });
 
     // Cảnh báo khi rời trang
-    window.addEventListener('beforeunload', e => {
+    const beforeUnloadHandler = e => {
         e.returnValue = 'Bạn chưa nộp bài. Rời trang sẽ làm mất tiến độ.';
         return e.returnValue;
-    });
+    };
+    window.addEventListener('beforeunload', beforeUnloadHandler);
+
+    if (form) {
+        form.addEventListener('submit', () => {
+            submitted = true;
+            window.removeEventListener('beforeunload', beforeUnloadHandler);
+        });
+    }
 
     // Cập nhật ngay khi load
     updateStatusBadges();

@@ -1,0 +1,6 @@
+SubjectId,QuestionText,Level,Answer1,Answer2,Answer3,Answer4,Correct
+IT08,"Trong C#, kiểu dữ liệu nào sau đây dùng để lưu số nguyên?",1,int,string,double,bool,1
+IT08,"Trong C#, từ khóa nào dùng để khai báo một hằng số?",2,const,var,readonly,static,1
+IT08,Giao thức nào thường được dùng để truy cập một trang web?,1,FTP,HTTP,SMTP,SSH,2
+IT08,SQL dùng để làm gì?,2,Thiết kế giao diện,Quản lý cơ sở dữ liệu,Vẽ sơ đồ UML,Viết CSS,2
+IT08,"Trong mô hình MVC, phần 'C' là viết tắt của từ nào?",1,Client,Controller,Class,Component,2

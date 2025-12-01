@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8gwEHYnbGCcLUA/MGVMZwV3wJDDvxWZY6/+JQzQaoAQ=",
+  "Hash": "qxk1pP8SNLV7hLmJILriN5bhxZpZg/yNU06cqkhSHLQ=",
   "Source": "LuyenThiTracNghiem",
   "BasePath": "_content/LuyenThiTracNghiem",
   "Mode": "Default",
@@ -16241,6 +16241,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/admin/images/img-exam/maxresdefault.jpg"
+    },
+    {
+      "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/Screenshot_2025-10-06_23_52_00.png",
+      "SourceId": "LuyenThiTracNghiem",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/",
+      "BasePath": "_content/LuyenThiTracNghiem",
+      "RelativePath": "admin/images/img-exam/Screenshot_2025-10-06_23_52_00.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/images/img-exam/Screenshot_2025-10-06_23_52_00.png"
     },
     {
       "Identity": "/home/nguyenbathai/Documents/Dotnet_Code/LuyenThiTracNghiem/wwwroot/admin/images/img-exam/thuc-hanh-voi-sql_563ab47a356c46e89762c2772b1c1edc.png",

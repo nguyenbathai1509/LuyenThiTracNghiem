@@ -19,6 +19,11 @@ namespace LuyenThiTracNghiem.Controllers
         public IActionResult Index()
         {
             int? id = HttpContext.Session.GetInt32("UserId");
+            if (id == null)
+            {
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
+            }
             var user = _context.Users.FirstOrDefault(u => u.UserId == id);
             if (user == null) return NotFound();
 

@@ -34,7 +34,7 @@ namespace LuyenThiTracNghiem. Components
                 .OrderByDescending(x => x.AvgPercent)
                 .ThenByDescending(x => x.Attempts)
                 .ThenByDescending(x => x.LastAttempt)
-                .Take(4)
+                .Take(5)
                 .ToListAsync();
 
             var userIds = attemptStats.Select(s => s.UserId).ToList();

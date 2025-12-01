@@ -25,7 +25,20 @@ namespace LuyenThiTracNghiem.Controllers
             if (userId == null)
             {
                 TempData["ErrorMessage"] = "Bạn cần đăng nhập để làm bài.";
-                return Redirect("/Login");
+                string returnUrl = Request.Headers["Referer"].ToString();
+                if (string.IsNullOrWhiteSpace(returnUrl) && id.HasValue)
+                {
+                    var examInfo = _context.Exams.FirstOrDefault(e => e.ExamId == id.Value);
+                    if (examInfo != null)
+                    {
+                        returnUrl = Url.RouteUrl("ExamInfor", new { slug = SlugGenerator.SlugGenerator.GenerateSlug(examInfo.ExamName), id = examInfo.ExamId }) ?? "/";
+                    }
+                }
+                if (string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    returnUrl = Request.Path + Request.QueryString;
+                }
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             var user = _context.Users.FirstOrDefault(u => u.UserId == userId.Value);

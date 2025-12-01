@@ -22,14 +22,16 @@ namespace LuyenThiTracNghiem.Controllers
 
             if (userID == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             var user = _context.Users.Where(u => u.UserId == userID).FirstOrDefault();
 
             if (user == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
             return View("Index", user);
         }
@@ -40,13 +42,15 @@ namespace LuyenThiTracNghiem.Controllers
             int? userID = HttpContext.Session.GetInt32("UserId");
             if (userID == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             var user = _context.Users.FirstOrDefault(u => u.UserId == userID);
             if (user == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             bool checkPhone = _context.Users.Any(u => u.UserId != userID && u.PhoneNumber == model.PhoneNumber);

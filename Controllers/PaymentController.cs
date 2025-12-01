@@ -32,6 +32,12 @@ namespace LuyenThiTracNghiem.Controllers
 
         public IActionResult Index()
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
+            }
             return View();
         }
 
@@ -41,7 +47,8 @@ namespace LuyenThiTracNghiem.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             var payments = _context.Payments
@@ -57,11 +64,18 @@ namespace LuyenThiTracNghiem.Controllers
         {
             try
             {
+                var userId = HttpContext.Session.GetInt32("UserId");
+                if (userId == null)
+                {
+                    var returnUrl = Url.Action("Index", "Payment") ?? (Request.Path + Request.QueryString);
+                    return RedirectToAction("Index", "Login", new { returnUrl });
+                }
+
                 var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "";
 
                 var payment = new tblPayment
                 {
-                    UserId = HttpContext.Session.GetInt32("UserId") ?? 0,
+                    UserId = userId.Value,
                     Amount = (decimal)amount,
                     PaymentMethod = "VNPAY",
                     PaymentStatus = "Pending",

@@ -1,0 +1,23 @@
+@using LuyenThiTracNghiem.Models;
+@model IList<tblUser>
+
+<div class="col-lg-4">
+    <div class="section-tittle mb-3 text-center">
+        <h3>🏆 Top Học viên xuất sắc</h3>
+    </div>
+
+    @{
+        var topStudents = Model.Take(5).ToList();
+        int i = 1;
+        foreach(var s in topStudents){
+            <div class="top-student text-center mb-3">
+                <div class="student-rank rank-@i mx-auto mb-2">@i</div>
+                <img src="https://cdn-icons-png.freepik.com/512/6858/6858504.png" alt="@s.FullName" class="student-avatar mb-2">
+                <h5 class="fw-bold mb-1"><a href="#">@s.FullName</a></h5>
+                <small class="text-muted">Toán học - 9.8 điểm</small>
+            </div>
+            i++;
+        }
+    }
+</div>
+Views/Shared/Components/TopStudents/Default.cshtml

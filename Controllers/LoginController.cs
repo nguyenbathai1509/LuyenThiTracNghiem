@@ -15,14 +15,36 @@ namespace LuyenThiTracNghiem.Controllers
             _context = context;
         }
 
-        [HttpGet("/Login")]
-        public IActionResult Index()
+        private bool IsSafeReturnUrl(string? returnUrl)
         {
+            if (string.IsNullOrWhiteSpace(returnUrl)) return false;
+
+            if (Url.IsLocalUrl(returnUrl)) return true;
+
+            if (Uri.TryCreate(returnUrl, UriKind.Absolute, out var uri))
+            {
+                var host = Request.Host.Host;
+                var port = Request.Host.Port;
+                if (uri.Scheme is "http" or "https"
+                    && string.Equals(uri.Host, host, StringComparison.OrdinalIgnoreCase)
+                    && (!port.HasValue || uri.Port == port.Value))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        [HttpGet("/Login")]
+        public IActionResult Index(string? returnUrl = null)
+        {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(tblUser model)
+        public IActionResult Index(tblUser model, string? returnUrl = null)
         {
             var check = _context.Users
                 .Where(u => (u.Username == model.Username) && (u.PasswordHash == model.PasswordHash))
@@ -52,7 +74,12 @@ namespace LuyenThiTracNghiem.Controllers
             {
                 return Redirect("/Admin");
             }
-            
+
+            if (IsSafeReturnUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+
             return RedirectToAction("Index", "Home");
         }
         

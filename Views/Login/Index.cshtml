@@ -58,7 +58,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
+                @{
+                    var returnUrl = (string?)ViewBag.ReturnUrl;
+                    if (string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        returnUrl = Context?.Request?.Query["returnUrl"].ToString();
+                    }
+                }
                 <form id="loginForm" method="post" novalidate>
+                    <input type="hidden" name="returnUrl" value="@returnUrl" />
                     <div class="mb-3 input-stack">
                         <label for="Username" class="form-label">Tên đăng nhập</label>
                         <div class="input-box">

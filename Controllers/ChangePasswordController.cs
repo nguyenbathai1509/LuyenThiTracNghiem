@@ -19,6 +19,12 @@ namespace LuyenThiTracNghiem.Controllers
 
         public IActionResult Index()
         {
+            var userID = HttpContext.Session.GetInt32("UserId");
+            if (userID == null)
+            {
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
+            }
             return View();
         }
 
@@ -30,14 +36,16 @@ namespace LuyenThiTracNghiem.Controllers
 
             if (userID == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             var user = _context.Users.Where(u => u.UserId == userID).FirstOrDefault();
 
             if (user == null)
             {
-                return RedirectToAction("Index", "Login");
+                var returnUrl = Request.Path + Request.QueryString;
+                return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
             if (user.PasswordHash != OldPassword)

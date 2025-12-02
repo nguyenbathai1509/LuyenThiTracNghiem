@@ -245,6 +245,33 @@ namespace LuyenThiTracNghiem.Areas.Admin.Controllers
             return RedirectToAction("Edit", new { userId = model.UserId });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TopUp(int userId, decimal amount)
+        {
+            if (amount <= 0)
+            {
+                TempData["ErrorMessage"] = "Số tiền nạp phải lớn hơn 0.";
+                return RedirectToAction("Edit", new { userId });
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "Người dùng không tồn tại !";
+                return RedirectToAction("NotFoundPage", "Error", new { area = "Admin" });
+            }
+
+            user.Balance += amount;
+            user.UpdatedAt = DateTime.Now;
+            user.UpdatedBy = HttpContext.Session.GetString("Username") ?? "Admin";
+
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = $"Đã nạp {amount:N0} VND cho người dùng.";
+            return RedirectToAction("Edit", new { userId });
+        }
+
         public IActionResult Delete(int? userId)
         {
             if (userId == null)

@@ -96,8 +96,30 @@
             <label asp-for="Status" class="form-check-label">Active</label>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Số dư hiện tại</label>
+            <div class="d-flex align-items-center">
+                <span class="fw-bold me-2">@Model.Balance.ToString("N0") VND</span>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-success">Save</button>
         <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+
+    <hr class="my-4" />
+
+    <h5>Nạp tiền cho người dùng</h5>
+    <form asp-action="TopUp" method="post" class="row g-2 align-items-end">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="userId" value="@Model.UserId" />
+        <div class="col-md-4 col-sm-6">
+            <label class="form-label" for="TopUpAmount">Số tiền (VND)</label>
+            <input type="number" class="form-control" id="TopUpAmount" name="amount" min="1000" step="1000" value="10000" required />
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <button type="submit" class="btn btn-primary w-100">Nạp tiền</button>
+        </div>
     </form>
 </main>
 

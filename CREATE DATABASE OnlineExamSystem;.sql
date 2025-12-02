@@ -80,6 +80,15 @@ CREATE TABLE tblAdminMenu (
 
 GO
 
+INSERT INTO tblAdminMenu (ItemName, ItemLevel, ParentLevel, ItemOrder, ItemTarget, IsActive, AreaName, ControllerName, ActionName, Icon, IdName)
+VALUES 
+(N'Subject management', 1, 0, 2, NULL, 1, N'Admin', N'Subject', N'Index', NULL, NULL),
+(N'Exam management', 1, 0, 3, NULL, 1, N'Admin', N'Exam', N'Index', NULL, NULL),
+(N'Question & Answer management', 1, 0, 4, NULL, 1, N'Admin', N'QuestionAndAnswer', N'Index', NULL, NULL),
+(N'User management', 1, 0, 1, NULL, 1, N'Admin', N'User', N'Index', NULL, NULL);
+
+GO
+
 CREATE TABLE tblSubject (
     SubjectId NVARCHAR(10) PRIMARY KEY,
     SubjectName NVARCHAR(255) NOT NULL,

@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
 using LuyenThiTracNghiem.Utilities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly DataContext _context;
@@ -21,6 +23,7 @@ namespace LuyenThiTracNghiem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(tblUser model)
         {
             if (!ModelState.IsValid)
@@ -53,7 +56,7 @@ namespace LuyenThiTracNghiem.Controllers
                 BirthDate = model.BirthDate,
                 Gender = model.Gender,
                 Username = model.Username,
-                PasswordHash = Functions.MD5Password(model.PasswordHash),
+                PasswordHash = Functions.HashPassword(model.PasswordHash),
                 PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 Role = 2,

@@ -29,6 +29,7 @@
             }
 
             <form id="changePasswordForm" method="post">
+                @Html.AntiForgeryToken()
                 <div class="mb-3 input-stack">
                     <label for="OldPassword" class="form-label">Mật khẩu cũ</label>
                     <div class="input-box">

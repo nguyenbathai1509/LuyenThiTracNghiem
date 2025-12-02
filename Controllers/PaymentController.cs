@@ -61,11 +61,14 @@ namespace LuyenThiTracNghiem.Controllers
             return View(payments);
         }
 
-        [HttpGet("Payment/CreatePaymentUrl")]
+        [HttpPost("Payment/CreatePaymentUrl")]
+        [ValidateAntiForgeryToken]
         public IActionResult CreatePaymentUrl(double amount = 10000)
         {
             try
             {
+                amount = Math.Clamp(amount, 10000, 100000000);
+
                 var userId = HttpContext.Session.GetInt32("UserId");
                 if (userId == null)
                 {
@@ -111,6 +114,7 @@ namespace LuyenThiTracNghiem.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("Payment/Callback")]
         public IActionResult Callback()
         {

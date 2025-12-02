@@ -50,45 +50,58 @@ namespace LuyenThiTracNghiem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(tblUser model, string? returnUrl = null)
         {
-            var hashed = Functions.MD5Password(model.PasswordHash);
-            var check = _context.Users
-                .Where(u => (u.Username == model.Username) && (u.PasswordHash == hashed))
-                .FirstOrDefault();
+            var user = _context.Users
+                .FirstOrDefault(u => u.Username == model.Username);
 
-            if (check == null)
+            if (user == null)
             {
                 ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không chính xác!";
                 return View(model);
             }
 
-            if (!check.Status)
+            var verified = Functions.VerifyPassword(user.PasswordHash, model.PasswordHash, out var needsUpgrade);
+            if (!verified)
+            {
+                ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không chính xác!";
+                return View(model);
+            }
+
+            if (!user.Status)
             {
                 ViewBag.Error = "Tài khoản của bạn đã bị khóa hoặc chưa được kích hoạt!";
                 return View(model);
             }
 
-            HttpContext.Session.SetInt32("UserId", check.UserId);
-            HttpContext.Session.SetString("FullName", check.FullName);
-            HttpContext.Session.SetString("UserCode", check.UserCode);
-            HttpContext.Session.SetString("Username", check.Username);
-            HttpContext.Session.SetString("Email", check.Email ?? "");
-            HttpContext.Session.SetString("PhoneNumber", check.PhoneNumber ?? "");
-            HttpContext.Session.SetInt32("Role", check.Role);
+            if (needsUpgrade)
+            {
+                user.PasswordHash = Functions.HashPassword(model.PasswordHash);
+                _context.Users.Update(user);
+                _context.SaveChanges();
+            }
 
-            var roleName = check.Role == 1 ? "Admin" : "User";
+            HttpContext.Session.SetInt32("UserId", user.UserId);
+            HttpContext.Session.SetString("FullName", user.FullName);
+            HttpContext.Session.SetString("UserCode", user.UserCode);
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetString("Email", user.Email ?? "");
+            HttpContext.Session.SetString("PhoneNumber", user.PhoneNumber ?? "");
+            HttpContext.Session.SetInt32("Role", user.Role);
+
+            var roleName = user.Role == 1 ? "Admin" : "User";
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, check.UserId.ToString()),
-                new Claim(ClaimTypes.Name, check.Username ?? string.Empty),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim(ClaimTypes.Name, user.Username ?? string.Empty),
                 new Claim(ClaimTypes.Role, roleName)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            if (check.Role == 1)
+            if (user.Role == 1)
             {
                 return Redirect("/Admin");
             }

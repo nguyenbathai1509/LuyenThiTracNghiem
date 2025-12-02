@@ -228,23 +228,42 @@ namespace LuyenThiTracNghiem.Controllers
 
             if (attempt == null) return NotFound();
 
-            var questions = await _context.Questions
-                .Where(q => q.SubjectId == attempt.Exam!.SubjectId) // dùng SubjectId
-                .Select(q => new ResultQuestionDto
+            var questionIdsInExam = await _context.QuestionInExams
+                .Where(qie => qie.ExamId == attempt.ExamId)
+                .OrderBy(qie => qie.CreatedAt)
+                .Select(qie => qie.QuestionId)
+                .ToListAsync();
+
+            var questionsDict = await _context.Questions
+                .Include(q => q.Answers)
+                .Where(q => questionIdsInExam.Contains(q.QuestionId))
+                .ToDictionaryAsync(q => q.QuestionId, q => q);
+
+            var userAnswers = await _context.AttemptAnswers
+                .Where(aa => aa.AttemptId == attempt.AttemptId)
+                .ToDictionaryAsync(aa => aa.QuestionId, aa => (int?)aa.AnswerId);
+
+            var questions = questionIdsInExam
+                .Where(id => questionsDict.ContainsKey(id))
+                .Select(id =>
                 {
-                    QuestionId = q.QuestionId,
-                    QuestionText = q.QuestionText,
-                    CorrectAnswerId = q.Answers.FirstOrDefault(a => a.IsCorrect)!.AnswerId,
-                    Answers = q.Answers.Select(a => new AnswerDto
+                    var q = questionsDict[id];
+                    var correctAnswer = q.Answers.FirstOrDefault(a => a.IsCorrect);
+
+                    return new ResultQuestionDto
                     {
-                        AnswerId = a.AnswerId,
-                        AnswerText = a.AnswerText
-                    }).ToList(),
-                    UserAnswerId = _context.AttemptAnswers
-                                .Where(aa => aa.AttemptId == attempt.AttemptId && aa.QuestionId == q.QuestionId)
-                                .Select(aa => (int?)aa.AnswerId)
-                                .FirstOrDefault()
-                }).ToListAsync();
+                        QuestionId = q.QuestionId,
+                        QuestionText = q.QuestionText,
+                        CorrectAnswerId = correctAnswer?.AnswerId ?? 0,
+                        Answers = q.Answers.Select(a => new AnswerDto
+                        {
+                            AnswerId = a.AnswerId,
+                            AnswerText = a.AnswerText
+                        }).ToList(),
+                        UserAnswerId = userAnswers.TryGetValue(q.QuestionId, out var ansId) ? ansId : null
+                    };
+                })
+                .ToList();
 
             var vm = new ExamResultViewModel
             {

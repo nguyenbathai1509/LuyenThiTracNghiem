@@ -12,7 +12,8 @@
         </div>
 
         <div class="card-body">
-            <form method="get" asp-action="CreatePaymentUrl" id="paymentForm">
+            <form method="post" asp-action="CreatePaymentUrl" id="paymentForm">
+                @Html.AntiForgeryToken()
                 <div class="form-section">
                     <label class="section-label">Chọn số tiền nạp</label>
                     <div class="amount-grid">

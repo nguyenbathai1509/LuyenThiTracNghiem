@@ -29,34 +29,38 @@
         </div>
 
         <div class="result-body">
-            @foreach (var q in Model.Questions)
-            {
-                <div class="question-card">
-                    <div class="q-title">Câu @q.QuestionId: @q.QuestionText</div>
-                    <ul class="answer-list">
-                        @foreach (var a in q.Answers)
-                        {
-                            var selected = q.UserAnswerId.HasValue && q.UserAnswerId.Value == a.AnswerId;
-                            var correct = a.AnswerId == q.CorrectAnswerId;
+            @{
+                int i = 1;
+                @foreach (var q in Model.Questions)
+                {
+                    <div class="question-card">
+                        <div class="q-title">Câu @i: @q.QuestionText</div>
+                        <ul class="answer-list">
+                            @foreach (var a in q.Answers)
+                            {
+                                var selected = q.UserAnswerId.HasValue && q.UserAnswerId.Value == a.AnswerId;
+                                var correct = a.AnswerId == q.CorrectAnswerId;
 
-                            string classes = "answer-item";
-                            if (correct) classes += " correct";
-                            if (selected) classes += " selected";
+                                string classes = "answer-item";
+                                if (correct) classes += " correct";
+                                if (selected) classes += " selected";
 
-                            <li class="@classes">
-                                @if (selected)
-                                {
-                                    <strong>(Chọn)</strong>
-                                }
-                                @a.AnswerText
-                                @if (correct)
-                                {
-                                    <strong> - Đáp án đúng</strong>
-                                }
-                            </li>
-                        }
-                    </ul>
-                </div>
+                                <li class="@classes">
+                                    @if (selected)
+                                    {
+                                        <strong>(Chọn)</strong>
+                                    }
+                                    @a.AnswerText
+                                    @if (correct)
+                                    {
+                                        <strong> - Đáp án đúng</strong>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    i++;
+                }
             }
         </div>
 

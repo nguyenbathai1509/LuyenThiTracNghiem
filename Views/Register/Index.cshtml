@@ -42,6 +42,7 @@
                 </div>
 
                 <form id="registerForm" method="post" novalidate>
+                    @Html.AntiForgeryToken()
                     <div class="mb-3 input-stack">
                         <label asp-for="FullName" class="form-label">Họ và tên</label>
                         <div class="input-box">

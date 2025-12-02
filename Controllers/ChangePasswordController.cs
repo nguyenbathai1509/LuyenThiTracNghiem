@@ -32,6 +32,7 @@ namespace LuyenThiTracNghiem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(string OldPassword, string NewPassword, string ConfirmPassword)
         {
 
@@ -51,8 +52,7 @@ namespace LuyenThiTracNghiem.Controllers
                 return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
-            var oldHash = Functions.MD5Password(OldPassword);
-            if (user.PasswordHash != oldHash)
+            if (!Functions.VerifyPassword(user.PasswordHash, OldPassword, out _))
             {
                 TempData["ErrorMessage"] = "Mật khẩu cũ không đúng.";
                 return RedirectToAction("Index");
@@ -64,7 +64,7 @@ namespace LuyenThiTracNghiem.Controllers
                 return RedirectToAction("Index");
             }
 
-            user.PasswordHash = Functions.MD5Password(NewPassword);
+            user.PasswordHash = Functions.HashPassword(NewPassword);
             user.UpdatedAt = DateTime.Now;
             user.UpdatedBy = "user";
 

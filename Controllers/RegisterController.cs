@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
+using LuyenThiTracNghiem.Utilities;
 
 namespace LuyenThiTracNghiem.Controllers
 {
@@ -52,7 +53,7 @@ namespace LuyenThiTracNghiem.Controllers
                 BirthDate = model.BirthDate,
                 Gender = model.Gender,
                 Username = model.Username,
-                PasswordHash = model.PasswordHash,
+                PasswordHash = Functions.MD5Password(model.PasswordHash),
                 PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 Role = 2,

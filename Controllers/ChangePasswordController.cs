@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using LuyenThiTracNghiem.Utilities;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [Authorize]
     public class ChangePasswordController : Controller
     {
         private readonly DataContext _context;
@@ -48,7 +51,8 @@ namespace LuyenThiTracNghiem.Controllers
                 return RedirectToAction("Index", "Login", new { returnUrl });
             }
 
-            if (user.PasswordHash != OldPassword)
+            var oldHash = Functions.MD5Password(OldPassword);
+            if (user.PasswordHash != oldHash)
             {
                 TempData["ErrorMessage"] = "Mật khẩu cũ không đúng.";
                 return RedirectToAction("Index");
@@ -60,7 +64,7 @@ namespace LuyenThiTracNghiem.Controllers
                 return RedirectToAction("Index");
             }
 
-            user.PasswordHash = NewPassword;
+            user.PasswordHash = Functions.MD5Password(NewPassword);
             user.UpdatedAt = DateTime.Now;
             user.UpdatedBy = "user";
 

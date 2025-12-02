@@ -1,6 +1,7 @@
 using LuyenThiTracNghiem.Models;
 using Microsoft.EntityFrameworkCore;
 using VNPAY.NET;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,15 @@ builder.Services.AddSession(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login";
+        options.AccessDeniedPath = "/Login";
+        options.SlidingExpiration = true;
+        options.ExpireTimeSpan = TimeSpan.FromHours(4);
+    });
 
 // ✅ Thêm HttpContextAccessor để dùng trong View (_Layout)
 builder.Services.AddHttpContextAccessor();
@@ -38,6 +48,7 @@ app.UseRouting();
 // ✅ Dùng session trước Authorization
 app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

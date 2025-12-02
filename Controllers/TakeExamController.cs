@@ -6,9 +6,11 @@ using LuyenThiTracNghiem.Areas.Admin.Models;
 using LuyenThiTracNghiem.Models;
 using LuyenThiTracNghiem.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [Authorize]
     public class TakeExamController : Controller
     {
         private readonly DataContext _context;

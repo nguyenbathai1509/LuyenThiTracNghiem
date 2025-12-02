@@ -4,9 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using LuyenThiTracNghiem.Utilities;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly DataContext _context;
@@ -44,10 +50,11 @@ namespace LuyenThiTracNghiem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(tblUser model, string? returnUrl = null)
+        public async Task<IActionResult> Index(tblUser model, string? returnUrl = null)
         {
+            var hashed = Functions.MD5Password(model.PasswordHash);
             var check = _context.Users
-                .Where(u => (u.Username == model.Username) && (u.PasswordHash == model.PasswordHash))
+                .Where(u => (u.Username == model.Username) && (u.PasswordHash == hashed))
                 .FirstOrDefault();
 
             if (check == null)
@@ -70,6 +77,17 @@ namespace LuyenThiTracNghiem.Controllers
             HttpContext.Session.SetString("PhoneNumber", check.PhoneNumber ?? "");
             HttpContext.Session.SetInt32("Role", check.Role);
 
+            var roleName = check.Role == 1 ? "Admin" : "User";
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, check.UserId.ToString()),
+                new Claim(ClaimTypes.Name, check.Username ?? string.Empty),
+                new Claim(ClaimTypes.Role, roleName)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
             if (check.Role == 1)
             {
                 return Redirect("/Admin");
@@ -83,9 +101,10 @@ namespace LuyenThiTracNghiem.Controllers
             return RedirectToAction("Index", "Home");
         }
         
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
     }

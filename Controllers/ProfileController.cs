@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly DataContext _context;

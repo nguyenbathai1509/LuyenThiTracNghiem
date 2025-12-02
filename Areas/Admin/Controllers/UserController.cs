@@ -7,12 +7,12 @@ using LuyenThiTracNghiem.Areas.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using LuyenThiTracNghiem.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AdminOnly]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly DataContext _context;

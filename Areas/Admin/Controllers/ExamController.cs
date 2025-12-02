@@ -8,12 +8,12 @@ using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LuyenThiTracNghiem.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AdminOnly]
+    [Authorize(Roles = "Admin")]
     public class ExamController : Controller
     {
         private readonly DataContext _context;

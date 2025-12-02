@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LuyenThiTracNghiem.Areas.Admin.Models;
-using LuyenThiTracNghiem.Filters;
 using LuyenThiTracNghiem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AdminOnly]
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
         private readonly DataContext _context;

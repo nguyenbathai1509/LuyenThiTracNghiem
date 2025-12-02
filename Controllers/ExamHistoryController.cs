@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LuyenThiTracNghiem.Models;
 using LuyenThiTracNghiem.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [Authorize]
     public class ExamHistoryController : Controller
     {
         private readonly DataContext _context;

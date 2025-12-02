@@ -13,12 +13,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
-using LuyenThiTracNghiem.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AdminOnly]
+    [Authorize(Roles = "Admin")]
     public class QuestionAndAnswerController : Controller
     {
         private readonly DataContext _context;

@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using LuyenThiTracNghiem.Models;
 using LuyenThiTracNghiem.Models.ViewModels;
 using LuyenThiTracNghiem.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [Authorize]
     public class UserStatsController : Controller
     {
         private readonly DataContext _context;

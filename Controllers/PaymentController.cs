@@ -7,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 using VNPAY.NET;
 using VNPAY.NET.Models;
 using VNPAY.NET.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuyenThiTracNghiem.Controllers
 {
+    [Authorize]
     public class PaymentController : Controller
     {
         private readonly DataContext _context;

@@ -38,6 +38,33 @@
         <p id="summary">Selected: 0 / @Model.QuestionCount</p>
         <p id="levelSummary">Easy: 0, Medium: 0, Hard: 0</p>
 
+        <!-- Random selection controls -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Thêm câu hỏi ngẫu nhiên</h5>
+                <div class="row g-2">
+                    <div class="col-sm-4 col-md-2">
+                        <label for="randomEasy" class="form-label mb-1">Easy</label>
+                        <input type="number" min="0" class="form-control" id="randomEasy" placeholder="Số câu Easy" />
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <label for="randomMedium" class="form-label mb-1">Medium</label>
+                        <input type="number" min="0" class="form-control" id="randomMedium" placeholder="Số câu Medium" />
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <label for="randomHard" class="form-label mb-1">Hard</label>
+                        <input type="number" min="0" class="form-control" id="randomHard" placeholder="Số câu Hard" />
+                    </div>
+                    <div class="col-sm-6 col-md-3 align-self-end">
+                        <button type="button" class="btn btn-primary w-100" id="btnRandomSelect">Thêm ngẫu nhiên</button>
+                    </div>
+                    <div class="col-12">
+                        <small class="text-muted">Để trống các ô sẽ tự chọn ngẫu nhiên @Model.QuestionCount câu.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Table -->
         <table class="table table-bordered" id="questionsTable">
             <thead>
@@ -75,6 +102,10 @@ const filterLevel = document.getElementById('filterLevel');
 const tableRows = document.querySelectorAll('#questionsTable tbody tr');
 const summary = document.getElementById('summary');
 const levelSummary = document.getElementById('levelSummary');
+const randomEasyInput = document.getElementById('randomEasy');
+const randomMediumInput = document.getElementById('randomMedium');
+const randomHardInput = document.getElementById('randomHard');
+const randomButton = document.getElementById('btnRandomSelect');
 
 function updateSummary() {
     const selected = Array.from(document.querySelectorAll('.selectQuestion')).filter(cb => cb.checked);
@@ -111,10 +142,79 @@ function filterRows() {
     updateSummary();
 }
 
+function shuffle(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function parseCount(input) {
+    const value = parseInt(input.value, 10);
+    return isNaN(value) || value < 0 ? 0 : value;
+}
+
+function selectRandomQuestions() {
+    const totalRequired = @Model.QuestionCount;
+    const easyRequested = parseCount(randomEasyInput);
+    const mediumRequested = parseCount(randomMediumInput);
+    const hardRequested = parseCount(randomHardInput);
+    const requestedTotal = easyRequested + mediumRequested + hardRequested;
+
+    const checkboxes = Array.from(document.querySelectorAll('.selectQuestion'));
+    if (checkboxes.length === 0) {
+        alert('Không có câu hỏi nào để chọn.');
+        return;
+    }
+
+    // Clear current selection
+    checkboxes.forEach(cb => { cb.checked = false; });
+
+    const rows = Array.from(tableRows);
+    const groups = { Easy: [], Medium: [], Hard: [] };
+    rows.forEach(row => {
+        const cb = row.querySelector('.selectQuestion');
+        const level = row.dataset.level;
+        if (groups[level]) {
+            groups[level].push(cb);
+        }
+    });
+
+    let remaining = totalRequired;
+
+    const pickFromGroup = (group, count) => {
+        if (remaining <= 0 || count <= 0) return;
+        const picks = shuffle(group).slice(0, Math.min(count, group.length, remaining));
+        picks.forEach(cb => { cb.checked = true; });
+        remaining -= picks.length;
+    };
+
+    if (requestedTotal > 0) {
+        pickFromGroup(groups.Easy, easyRequested);
+        pickFromGroup(groups.Medium, mediumRequested);
+        pickFromGroup(groups.Hard, hardRequested);
+    }
+
+    if (remaining > 0) {
+        const remainingPool = shuffle(checkboxes.filter(cb => !cb.checked));
+        remainingPool.slice(0, Math.min(remaining, remainingPool.length)).forEach(cb => { cb.checked = true; });
+        remaining -= Math.min(remaining, remainingPool.length);
+    }
+
+    if (remaining > 0) {
+        alert('Không đủ câu hỏi để chọn ngẫu nhiên theo yêu cầu.');
+    }
+
+    updateSummary();
+}
+
 // Events
 searchInput.addEventListener('input', filterRows);
 filterLevel.addEventListener('change', filterRows);
 document.querySelectorAll('.selectQuestion').forEach(cb => cb.addEventListener('change', updateSummary));
+randomButton.addEventListener('click', selectRandomQuestions);
 
 // Init
 updateSummary();

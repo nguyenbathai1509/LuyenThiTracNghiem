@@ -1,0 +1,124 @@
+:root {
+    --primary: #2563eb;
+    --primary-2: #1d4ed8;
+    --muted: #6b7280;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+}
+.auth-hero {
+    min-height: 82vh;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 10% 20%, #e0f2fe 0%, #eef2ff 30%, #f8fafc 65%);
+    padding: 32px 12px;
+}
+.auth-shell {
+    max-width: 1000px;
+    width: 100%;
+    background: var(--surface);
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+    overflow: hidden;
+}
+.auth-visual {
+    background: linear-gradient(160deg, rgba(16, 185, 129, 0.95), rgba(52, 211, 153, 0.9));
+    color: #fff;
+    padding: 36px;
+    height: 100%;
+}
+.auth-visual .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    font-weight: 700;
+}
+.auth-visual h2 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 14px 0 10px;
+}
+.auth-visual p {
+    opacity: 0.92;
+    font-size: 15px;
+}
+.auth-visual .bullet {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    opacity: 0.94;
+}
+.auth-body {
+    padding: 34px 32px;
+}
+.input-stack label {
+    font-weight: 600;
+    color: #111827;
+}
+.input-box {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.input-box:focus-within {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+}
+.input-box .icon {
+    color: var(--primary);
+    font-size: 18px;
+    margin-right: 10px;
+}
+.input-box input,
+.input-box select {
+    border: none;
+    background: transparent;
+    flex: 1;
+    padding: 6px 4px;
+}
+.input-box input:focus,
+.input-box select:focus {
+    outline: none;
+    background: transparent;
+}
+.auth-btn {
+    border: none;
+    width: 100%;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    background: linear-gradient(120deg, var(--primary), var(--primary-2));
+    color: #fff;
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
+}
+.auth-btn:hover {
+    background: linear-gradient(120deg, var(--primary-2), var(--primary));
+    color: #fff;
+}
+.auth-footer {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--muted);
+}
+.auth-footer a {
+    font-weight: 700;
+}
+@media (max-width: 991px) {
+    .auth-shell {
+        max-width: 540px;
+    }
+    .auth-visual {
+        display: none;
+    }
+}
